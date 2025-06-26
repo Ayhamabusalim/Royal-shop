@@ -12,7 +12,7 @@ use Laratrust\Traits\HasRolesAndPermissions;
 
 class User extends Authenticatable implements LaratrustUser
 {
-    use HasApiTokens, HasFactory, Notifiable , HasRolesAndPermissions;
+    use HasApiTokens, HasFactory, Notifiable, HasRolesAndPermissions;
 
     /**
      * The attributes that are mass assignable.
@@ -22,9 +22,22 @@ class User extends Authenticatable implements LaratrustUser
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
         'password',
+        'phone',
+        'address',
+        'city',
+        'postal_code',
+        'country',
+        'avatar',
+        'is_active',
+        'remember_token',
+        'created_at',
+        'updated_at',
+
     ];
 
+    
     /**
      * The attributes that should be hidden for serialization.
      *

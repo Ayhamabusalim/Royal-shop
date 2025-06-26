@@ -234,8 +234,10 @@
 
     .logo-navbar {
         height: 50px;
-        width: auto;
+        width: 50%;
         max-height: 100%;
+        margin-left: 25px;
+        font-family: 'Courier New', Courier, monospace;
     }
 </style>
 <div class="header-mobile header_sticky">
@@ -372,6 +374,8 @@
                 <a href="{{route('index')}}">
                     <img src="{{asset('assets/images/logo2.png')}}" alt="Uomo"
                         class="logo__image d-block logo-navbar " />
+                    <h4>ROYAL SHOP</h4>
+
                 </a>
             </div>
 
