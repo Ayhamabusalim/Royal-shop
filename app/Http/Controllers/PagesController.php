@@ -64,4 +64,8 @@ class PagesController extends Controller
     {
         return view('frontend.pages.confirmation_order');
     }
+    public function admin_dash()
+    {
+        return view('backend.pages.admin_dash');
+    }
 }

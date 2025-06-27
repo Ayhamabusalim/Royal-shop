@@ -14,6 +14,8 @@ class User extends Authenticatable implements LaratrustUser
 {
     use HasApiTokens, HasFactory, Notifiable, HasRolesAndPermissions;
 
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -37,7 +39,7 @@ class User extends Authenticatable implements LaratrustUser
 
     ];
 
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *

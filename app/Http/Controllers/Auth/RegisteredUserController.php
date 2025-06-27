@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string',  'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'phone' => ['required', 'max:20', 'string','min:10'],
+            'phone' => ['required', 'max:20', 'string', 'min:10'],
             'address' => ['string'],
             'city' => ['string', 'max:100'],
             'postal_code' => ['string', 'max:20'],
@@ -58,6 +58,7 @@ class RegisteredUserController extends Controller
             // 'remember_token'=>Str::random(60),
 
         ]);
+        $user->addRole('user');
 
         event(new Registered($user));
 

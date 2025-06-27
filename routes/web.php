@@ -27,6 +27,7 @@ Route::get('/addresses', [PagesController::class, 'addresses'])->name('addresses
 Route::get('/add_address', [PagesController::class, 'add_address'])->name('add_address');
 Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
 Route::get('/confirmation_order', [PagesController::class, 'confirmation_order'])->name('confirmation_order');
+Route::get('/admin_dash', [PagesController::class, 'admin_dash'])->name('admin_dash');
 
 
 

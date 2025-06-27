@@ -239,6 +239,38 @@
         margin-left: 25px;
         font-family: 'Courier New', Courier, monospace;
     }
+
+    .dropdown-hover {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-hover-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        border-radius: 6px;
+    }
+
+    .dropdown-hover:hover .dropdown-hover-content {
+        display: block;
+    }
+
+    .dropdown-hover-content a {
+        color: #333;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-hover-content a:hover {
+        background-color: #f2f2f2;
+    }
 </style>
 <div class="header-mobile header_sticky">
     <div class="container d-flex align-items-center h-100">
@@ -451,28 +483,45 @@
                     </div>
                 </div>
 
-                <div class="header-tools__item hover-container">
-                    <a href="{{route('login')}}" class="header-tools__item">
+                <div class="dropdown-hover">
+                    <a href="#" class="header-tools__item ">
                         <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <use href="#icon_user" />
                         </svg>
                     </a>
+
+                    <div class="dropdown-hover-content">
+                        @guest
+                            <a class="menu-link menu-link_us-s" href="{{ route('login') }}">Log in</a>
+                            <a class="menu-link menu-link_us-s" href="{{ route('register') }}">Register</a>
+                        @endguest
+                        @auth <a class="menu-link menu-link_us-s" href="{{ route('myaccount') }}">My Account</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="menu-link menu-link_us-s" type="submit"
+                                    style="border: none; background: none; width: 100%; text-align: left; padding: 10px 15px;">Logout</button>
+                            </form>
+                        @endauth
+                    </div>
                 </div>
+                @auth
+                    <a href="{{route('watchlist')}}" class="header-tools__item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon_heart" />
+                        </svg>
+                    </a>
 
-                <a href="{{route('watchlist')}}" class="header-tools__item">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use href="#icon_heart" />
-                    </svg>
-                </a>
+                    <a href="{{route('cart')}}" class="header-tools__item header-tools__cart">
+                        <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon_cart" />
+                        </svg>
 
-                <a href="{{route('cart')}}" class="header-tools__item header-tools__cart">
-                    <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <use href="#icon_cart" />
-                    </svg>
+                    </a>
+                @endauth
 
-                </a>
+
             </div>
         </div>
     </div>

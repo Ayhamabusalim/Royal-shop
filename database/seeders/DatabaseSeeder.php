@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +19,28 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $roles = [
+            [
+                'name' => 'admin',
+                'display_name' => 'admin'
+            ],
+
+            [
+                'name' => 'user',
+                'display_name' => 'user'
+            ]
+
+        ];
+
+        foreach ($roles as $role) {
+            Role::firstOrCreate($role);
+        }
+        $user = User::create([
+            'name' => 'admin',
+            'email' => 'admin@royalshop.com',
+            'password' => Hash::make('ayham1996'),
+        ]);
+        $user->addRole('admin');
     }
 }
