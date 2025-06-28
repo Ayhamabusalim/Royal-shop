@@ -68,4 +68,29 @@ class PagesController extends Controller
     {
         return view('backend.pages.admin_dash');
     }
+
+    public function account_details()
+    {
+        return view('frontend.pages.account_details');
+    }
+    public function admin_login()
+    {
+        return view('backend.admin_auth.admin_login');
+    }
+    public function dashboard()
+    {
+        return view('backend.pages.dashboard');
+    }
+    public function category()
+    {
+        return view('backend.pages.category.index');
+    }
+    public function add_category()
+    {
+        return view('backend.pages.category.add_category');
+    }
+    public function products()
+    {
+        return view('backend.pages.products.index');
+    }
 }

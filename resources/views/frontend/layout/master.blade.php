@@ -23,11 +23,11 @@
 
 <body class="gradient-bg">
     @include('frontend.layout.navbar')
-    
-   @yield('main')
+
+    @yield('main')
 
     <hr class="mt-5 text-secondary" />
-    
+
     @include('frontend.layout.footer')
     <div id="scrollTop" class="visually-hidden end-0"></div>
     <div class="page-overlay"></div>

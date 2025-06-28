@@ -28,6 +28,13 @@ Route::get('/add_address', [PagesController::class, 'add_address'])->name('add_a
 Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
 Route::get('/confirmation_order', [PagesController::class, 'confirmation_order'])->name('confirmation_order');
 Route::get('/admin_dash', [PagesController::class, 'admin_dash'])->name('admin_dash');
+Route::get('/admin_dash', [PagesController::class, 'admin_dash'])->name('admin_dash');
+Route::get('/account_details', [PagesController::class, 'account_details'])->name('account_details');
+Route::get('/admin_login', [PagesController::class, 'admin_login'])->name('admin_login');
+Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
+Route::get('/category', [PagesController::class, 'category'])->name('category');
+Route::get('/add_category', [PagesController::class, 'add_category'])->name('add_category');
+Route::get('/products', [PagesController::class, 'products'])->name('products');
 
 
 

@@ -103,7 +103,7 @@
     <li><a href="{{route('orders_details')}}" class="menu-link menu-link_us-s">Orders Details</a></li>
     <li><a href="{{route('addresses')}}" class="menu-link menu-link_us-s">Addresses</a></li>
     <li><a href="add_address" class="menu-link menu-link_us-s">Add Addresses</a></li>
-    <li><a href="account-details.html" class="menu-link menu-link_us-s">Account Details</a></li>
+    <li><a href="{{route('account_details')}}" class="menu-link menu-link_us-s">Account Details</a></li>
     <li><a href="{{route('watchlist')}}" class="menu-link menu-link_us-s">Wishlist</a></li>
     <li>
         <form method="POST" action="{{ route('logout') }}">

@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         $role = Auth::user()->role;
 
         if (Auth::user()->roles->contains('name', 'admin')) {
-            return redirect()->route('admin_dash');
+            return redirect()->intended(RouteServiceProvider::DASH);
         }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
