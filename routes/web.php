@@ -35,6 +35,8 @@ Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard
 Route::get('/category', [PagesController::class, 'category'])->name('category');
 Route::get('/add_category', [PagesController::class, 'add_category'])->name('add_category');
 Route::get('/products', [PagesController::class, 'products'])->name('products');
+Route::get('/add_products', [PagesController::class, 'add_products'])->name('add_products');
+Route::get('/backend_orders', [PagesController::class, 'backend_orders'])->name('backend_orders');
 
 
 

@@ -35,7 +35,8 @@
                                 </div>
                             </form>
                         </div>
-                        <a class="tf-button style-1 w208" href="add-category.html"><i class="icon-plus"></i>Add new</a>
+                        <a class="tf-button style-1 w208" href="{{route('add_category')}}"><i class="icon-plus"></i>Add
+                            new</a>
                     </div>
                     <div class="wg-table table-all-user">
                         <table class="table table-striped table-bordered">

@@ -93,4 +93,12 @@ class PagesController extends Controller
     {
         return view('backend.pages.products.index');
     }
+    public function add_products()
+    {
+        return view('backend.pages.products.add_products');
+    }
+    public function backend_orders()
+    {
+        return view('backend.pages.orders.index');
+    }
 }
