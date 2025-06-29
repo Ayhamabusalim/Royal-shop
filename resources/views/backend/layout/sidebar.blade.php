@@ -70,28 +70,28 @@
                             </a>
                         </li>
                         <li class="sub-menu-item">
-                            <a href="order-tracking.html" class="">
+                            <a href="{{route('order_traking')}}" class="">
                                 <div class="text">Order tracking</div>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="menu-item">
-                    <a href="coupons.html" class="">
+                    <a href="{{route('coupons')}}" class="">
                         <div class="icon"><i class="icon-grid"></i></div>
                         <div class="text">Coupns</div>
                     </a>
                 </li>
 
                 <li class="menu-item">
-                    <a href="users.html" class="">
+                    <a href="{{route('users')}}" class="">
                         <div class="icon"><i class="icon-user"></i></div>
                         <div class="text">User</div>
                     </a>
                 </li>
 
                 <li class="menu-item">
-                    <a href="settings.html" class="">
+                    <a href="{{route('admin_settings')}}" class="">
                         <div class="icon"><i class="icon-settings"></i></div>
                         <div class="text">Settings</div>
                     </a>

@@ -37,6 +37,10 @@ Route::get('/add_category', [PagesController::class, 'add_category'])->name('add
 Route::get('/products', [PagesController::class, 'products'])->name('products');
 Route::get('/add_products', [PagesController::class, 'add_products'])->name('add_products');
 Route::get('/backend_orders', [PagesController::class, 'backend_orders'])->name('backend_orders');
+Route::get('/order_traking', [PagesController::class, 'order_traking'])->name('order_traking');
+Route::get('/coupons', [PagesController::class, 'coupons'])->name('coupons');
+Route::get('/users', [PagesController::class, 'users'])->name('users');
+Route::get('/admin_settings', [PagesController::class, 'admin_settings'])->name('admin_settings');
 
 
 

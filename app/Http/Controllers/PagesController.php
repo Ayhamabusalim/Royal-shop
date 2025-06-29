@@ -101,4 +101,20 @@ class PagesController extends Controller
     {
         return view('backend.pages.orders.index');
     }
+    public function order_traking()
+    {
+        return view('backend.pages.orders.order_traking');
+    }
+    public function coupons()
+    {
+        return view('backend.pages.coupons.coupons');
+    }
+    public function users()
+    {
+        return view('backend.pages.users.users');
+    }
+    public function admin_settings()
+    {
+        return view('backend.pages.admin_settings.admin_settings');
+    }
 }
