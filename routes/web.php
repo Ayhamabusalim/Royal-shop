@@ -41,6 +41,7 @@ Route::get('/order_traking', [PagesController::class, 'order_traking'])->name('o
 Route::get('/coupons', [PagesController::class, 'coupons'])->name('coupons');
 Route::get('/users', [PagesController::class, 'users'])->name('users');
 Route::get('/admin_settings', [PagesController::class, 'admin_settings'])->name('admin_settings');
+Route::get('/product_details', [PagesController::class, 'product_details'])->name('product_details');
 
 
 

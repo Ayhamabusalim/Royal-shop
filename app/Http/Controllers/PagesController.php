@@ -117,4 +117,8 @@ class PagesController extends Controller
     {
         return view('backend.pages.admin_settings.admin_settings');
     }
+    public function product_details()
+    {
+        return view('frontend.pages.product_details');
+    }
 }

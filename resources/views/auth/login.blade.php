@@ -94,8 +94,8 @@
 
                             <div class="customer-option mt-4 text-center">
                                 <span class="text-secondary">No account yet?</span>
-                                <a href="{{route('register')}}" class="btn-text js-show-register">Create Account</a>
-                                <a href="{{route('register')}}" class="btn-text js-show-register">Forget Password</a>
+                                <a href="{{route('register')}}" class="btn-text js-show-register">Create Account</a> |
+                                <a href="#" class="btn-text js-show-register">Forget Password</a>
                             </div>
                         </form>
 
