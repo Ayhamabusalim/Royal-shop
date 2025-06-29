@@ -30,37 +30,39 @@
                 </div>
                 <!-- new-category -->
                 <div class="wg-box">
-                    <form class="form-new-product form-style-1" action="{{route('categories.store')}}" method="POST" enctype="multipart/form-data">
+                    <form class="form-new-product form-style-1" action="{{route('categories.update', $category->id)}}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <fieldset class="name">
                             <div class="body-title">Category Name <span class="tf-color-1">*</span>
                             </div>
-                            <input class="flex-grow" type="text" placeholder="Category name" name="name" tabindex="0"
-                                value="" aria-required="true" required="">
+                            <input class="flex-grow" type="text" placeholder="" name="name" tabindex="0"
+                                value="{{$category->name}}" aria-required="true" required="">
                         </fieldset>
                         <fieldset class="name">
                             <div class="body-title">Category Description <span class="tf-color-1">*</span>
                             </div>
-                            <input class="flex-grow" type="text" placeholder="Category Description" name="description" tabindex="0"
-                                value="" aria-required="true" required="">
+                            <input class="flex-grow" type="text" placeholder="" name="description" tabindex="0"
+                                value="{{$category->description}}" aria-required="true" required="">
                         </fieldset>
                         <fieldset class="name">
                             <div class="body-title">Meta Title <span class="tf-color-1">*</span>
                             </div>
-                            <input class="flex-grow" type="text" placeholder="Meta Title" name="meta_title" tabindex="0"
-                                value="" aria-required="true" required="">
+                            <input class="flex-grow" type="text" placeholder="" name="meta_title" tabindex="0"
+                                value="{{$category->meta_title}}" aria-required="true" required="">
                         </fieldset>
                         <fieldset class="name">
                             <div class="body-title">Meta Description <span class="tf-color-1">*</span>
                             </div>
-                            <input class="flex-grow" type="text" placeholder="Meta Description" name="meta_description" tabindex="0"
-                                value="" aria-required="true" required="">
+                            <input class="flex-grow" type="text" placeholder="" name="meta_description" tabindex="0"
+                                value="{{$category->meta_description}}" aria-required="true" required="">
                         </fieldset>
                         <fieldset class="name">
                             <div class="body-title">Category Slug <span class="tf-color-1">*</span>
                             </div>
-                            <input class="flex-grow" type="text" placeholder="Category Slug" name="slug" tabindex="0"
-                                value="" aria-required="true" required="">
+                            <input class="flex-grow" type="text" placeholder="" name="slug" tabindex="0"
+                                value="{{$category->slug}}" aria-required="true" required="">
                         </fieldset>
                         <fieldset>
                             <div class="body-title">Upload images <span class="tf-color-1">*</span>
@@ -76,7 +78,8 @@
                                         </span>
                                         <span class="body-text">Drop your images here or select <span class="tf-color">click
                                                 to browse</span></span>
-                                        <input type="file" id="myFile" name="image" accept="image/*">
+                                        <input type="file" id="myFile" name="image" accept="image/*"
+                                            value={{$category->image}}>
                                     </label>
                                 </div>
                             </div>

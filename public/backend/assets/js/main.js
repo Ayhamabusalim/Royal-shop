@@ -190,7 +190,7 @@
    
   }
 
-  var retinaLogos = function() {
+  /* var retinaLogos = function() {
     var retina = window.devicePixelRatio > 1 ? true : false;
       if(retina) {
         if ($(".dark-theme").length > 0) {
@@ -200,7 +200,7 @@
         }
       }
   };  
-
+ */
   var preloader = function () {
     setTimeout(function () {
     $("#preload").fadeOut("slow", function () {
@@ -224,7 +224,7 @@
     select_colors_theme();
     icon_function();
     box_search();
-    retinaLogos();
+   /*  retinaLogos(); */
     preloader();
     
   });

@@ -1,8 +1,8 @@
 <div class="section-menu-left">
     <div class="box-logo">
         <a href="index.html" id="site-logo-inner">
-            <img class="" id="logo_header" alt="" src="images/logo/logo.png" data-light="images/logo/logo.png"
-                data-dark="images/logo/logo.png">
+            <img class="" id="logo_header" alt="" src="{{ asset('images/logo/logo.png') }}"
+                data-light="{{asset('images/logo/logo.png')}}" data-dark="{{asset('images/logo/logo.png')}}">
         </a>
         <div class="button-show-hide">
             <i class="icon-menu-left"></i>
@@ -29,12 +29,12 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="sub-menu-item">
-                            <a href="{{route('add_category')}}" class="">
+                            <a href="{{route('categories.create')}}" class="">
                                 <div class="text">New Category</div>
                             </a>
                         </li>
                         <li class="sub-menu-item">
-                            <a href="{{route('category')}}" class="">
+                            <a href="{{route('categories.index')}}" class="">
                                 <div class="text">Categories</div>
                             </a>
                         </li>
