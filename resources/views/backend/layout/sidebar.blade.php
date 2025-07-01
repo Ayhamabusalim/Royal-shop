@@ -42,6 +42,24 @@
                 </li>
                 <li class="menu-item has-children">
                     <a href="javascript:void(0);" class="menu-item-button">
+                        <div class="icon"><i class="icon-layers"></i></div>
+                        <div class="text">Sub Category</div>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="sub-menu-item">
+                            <a href="{{route('subcategories.create')}}" class="">
+                                <div class="text">New Sub Category</div>
+                            </a>
+                        </li>
+                        <li class="sub-menu-item">
+                            <a href="{{route('subcategories.index')}}" class="">
+                                <div class="text">Sub Categories</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item has-children">
+                    <a href="javascript:void(0);" class="menu-item-button">
                         <div class="icon"><i class="icon-shopping-cart"></i></div>
                         <div class="text">Products</div>
                     </a>

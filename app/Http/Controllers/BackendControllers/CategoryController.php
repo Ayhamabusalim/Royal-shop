@@ -91,7 +91,7 @@ class CategoryController extends Controller
         $Newimage_name = uniqid() . $slug . '.' . $request->image->extension();
         $request->image->move(public_path('image'), $Newimage_name);
 
-        $category->UPDATE([
+        $category->update([
             'name' => $request->name,
             'description' => $request->description,
             'meta_title' =>  $request->meta_title,

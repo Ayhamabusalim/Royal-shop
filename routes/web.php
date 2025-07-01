@@ -3,6 +3,7 @@
 use App\Http\Controllers\BackendControllers\CategoryController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,8 +44,9 @@ Route::get('/users', [PagesController::class, 'users'])->name('users');
 Route::get('/admin_settings', [PagesController::class, 'admin_settings'])->name('admin_settings');
 Route::get('/product_details', [PagesController::class, 'product_details'])->name('product_details');
 
-/* Route::get('/category', [CategoryController::class, 'index'])->name('category_index'); */
+
 route::resource('categories', CategoryController::class);
+route::resource('subcategories', SubCategoryController::class);
 
 
 Route::get('/myaccount', [PagesController::class, 'myaccount'])->middleware(['auth', 'verified'])->name('myaccount');
