@@ -84,22 +84,28 @@ class CategoryController extends Controller
             'meta_title' => 'required',
             'meta_description' => 'required',
             'slug' => 'required',
-            'image' => 'required|mimes:jpg,png,jped,svg|max:5048',
+            'image' => 'nullable|mimes:jpg,png,jped,svg|max:5048',
         ]);
 
-        $slug = str::slug($request->slug, '-');
-        $Newimage_name = uniqid() . $slug . '.' . $request->image->extension();
-        $request->image->move(public_path('image'), $Newimage_name);
+        if ($request->hasFile('image')) {
+            $slug = Str::slug($request->slug, '-');
+            $Newimage_name = uniqid() . $slug . '.' . $request->image->extension();
+            $request->image->move(public_path('image'), $Newimage_name);
 
-        $category->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'meta_title' =>  $request->meta_title,
-            'meta_description' => $request->meta_description,
-            'slug' => $slug,
-            'image' => $Newimage_name,
-            'updated_at' => now(),
-        ]);
+            $category->update([
+                'image' => $Newimage_name,
+            ]);
+        } else {
+            $category->update([
+                'category_id' => $request->category_id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'meta_title' => $request->meta_title,
+                'meta_description' => $request->meta_description,
+                'slug' => $request->slug,
+            ]);
+        }
+
         return redirect()->route('categories.index');
     }
 

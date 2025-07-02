@@ -88,13 +88,18 @@ class SubCategoryController extends Controller
             'description' => 'required|string|max:1000',
             'meta_title' => 'string|max:255',
             'meta_description' => 'string|max:255',
-            'slug' => 'required|string|max:255|unique:sub_categories,slug,' . $subCategory->id,
-            'image' => 'required|mimes:jpg,png,jped,svg|max:5048',
+            'slug' => 'required',
+            'image' => 'nullable|mimes:jpg,png,jped,svg|max:5048',
         ]);
-        $slug = str::slug($request->slug, '-');
-        $Newimage_name = uniqid() . $slug . '.' . $request->image->extension();
-        $request->image->move(public_path('image'), $Newimage_name);
+       if ($request->hasFile('image')) {
+            $slug = Str::slug($request->slug, '-');
+            $Newimage_name = uniqid() . $slug . '.' . $request->image->extension();
+            $request->image->move(public_path('image'), $Newimage_name);
 
+            $subCategory->update([
+                'image' => $Newimage_name,
+            ]);
+        } else{
         $subCategory->update([
             'category_id' => $request->category_id,
             'name' => $request->name,
@@ -102,8 +107,8 @@ class SubCategoryController extends Controller
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
             'slug' => $request->slug,
-            'image' => $Newimage_name,
         ]);
+    }
         return redirect()->route('subcategories.index')->with('success', 'Sub Category updated successfully.');
     }
 

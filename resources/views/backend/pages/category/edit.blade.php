@@ -28,59 +28,74 @@
                         </li>
                     </ul>
                 </div>
-                <!-- new-category -->
                 <div class="wg-box">
-                    <form class="form-new-product form-style-1" action="{{route('categories.update', $category->id)}}"
+                    <form class="form-new-product form-style-1" action="{{ route('categories.update', $category->id) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <fieldset class="name">
-                            <div class="body-title">Category Name <span class="tf-color-1">*</span>
-                            </div>
-                            <input class="flex-grow" type="text" placeholder="" name="name" tabindex="0"
-                                value="{{$category->name}}" aria-required="true" required="">
+                            <div class="body-title">Category Name <span class="tf-color-1">*</span></div>
+                            <input class="flex-grow @error('name') is-invalid @enderror" type="text" name="name"
+                                value="{{ old('name', $category->name) }}" required>
+                            @error('name')
+                                <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
+                            @enderror
                         </fieldset>
                         <fieldset class="name">
-                            <div class="body-title">Category Description <span class="tf-color-1">*</span>
-                            </div>
-                            <input class="flex-grow" type="text" placeholder="" name="description" tabindex="0"
-                                value="{{$category->description}}" aria-required="true" required="">
+                            <div class="body-title">Category Description <span class="tf-color-1">*</span></div>
+                            <input class="flex-grow @error('description') is-invalid @enderror" type="text"
+                                name="description" value="{{ old('description', $category->description) }}" required>
+                            @error('description')
+                                <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
+                            @enderror
                         </fieldset>
                         <fieldset class="name">
-                            <div class="body-title">Meta Title <span class="tf-color-1">*</span>
-                            </div>
-                            <input class="flex-grow" type="text" placeholder="" name="meta_title" tabindex="0"
-                                value="{{$category->meta_title}}" aria-required="true" required="">
+                            <div class="body-title">Meta Title <span class="tf-color-1">*</span></div>
+                            <input class="flex-grow @error('meta_title') is-invalid @enderror" type="text" name="meta_title"
+                                value="{{ old('meta_title', $category->meta_title) }}" required>
+                            @error('meta_title')
+                                <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
+                            @enderror
                         </fieldset>
                         <fieldset class="name">
-                            <div class="body-title">Meta Description <span class="tf-color-1">*</span>
-                            </div>
-                            <input class="flex-grow" type="text" placeholder="" name="meta_description" tabindex="0"
-                                value="{{$category->meta_description}}" aria-required="true" required="">
+                            <div class="body-title">Meta Description <span class="tf-color-1">*</span></div>
+                            <input class="flex-grow @error('meta_description') is-invalid @enderror" type="text"
+                                name="meta_description" value="{{ old('meta_description', $category->meta_description) }}"
+                                required>
+                            @error('meta_description')
+                                <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
+                            @enderror
                         </fieldset>
                         <fieldset class="name">
-                            <div class="body-title">Category Slug <span class="tf-color-1">*</span>
-                            </div>
-                            <input class="flex-grow" type="text" placeholder="" name="slug" tabindex="0"
-                                value="{{$category->slug}}" aria-required="true" required="">
+                            <div class="body-title">Category Slug <span class="tf-color-1">*</span></div>
+                            <input class="flex-grow @error('slug') is-invalid @enderror" type="text" name="slug"
+                                value="{{ old('slug', $category->slug) }}" required>
+                            @error('slug')
+                                <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
+                            @enderror
                         </fieldset>
                         <fieldset>
-                            <div class="body-title">Upload images <span class="tf-color-1">*</span>
-                            </div>
+                            <div class="body-title">Upload images <span class="tf-color-1">*</span></div>
                             <div class="upload-image flex-grow">
-                                <div class="item" id="imgpreview" style="display:none">
-                                    <img src="upload-1.html" class="effect8" alt="">
-                                </div>
+                                {{-- Show current image if available --}}
+                                @if($category->image)
+                                    <div class="item">
+                                        <img src="{{ asset('image/' . $category->image) }}" class="effect8" alt="Current Image"
+                                            style="max-height: 150px;">
+                                    </div>
+                                @endif
+
                                 <div id="upload-file" class="item up-load">
                                     <label class="uploadfile" for="myFile">
-                                        <span class="icon">
-                                            <i class="icon-upload-cloud"></i>
-                                        </span>
+                                        <span class="icon"><i class="icon-upload-cloud"></i></span>
                                         <span class="body-text">Drop your images here or select <span class="tf-color">click
                                                 to browse</span></span>
                                         <input type="file" id="myFile" name="image" accept="image/*"
-                                            value={{$category->image}}>
+                                            class="@error('image') is-invalid @enderror">
                                     </label>
+                                    @error('image')
+                                        <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </fieldset>
@@ -89,6 +104,7 @@
                             <button class="tf-button w208" type="submit">Save</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
