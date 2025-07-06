@@ -36,8 +36,7 @@
                             </form>
                         </div>
                         <a class="tf-button style-1 w208" href="{{route('subcategories.create')}}"><i
-                                class="icon-plus"></i>Add
-                            new</a>
+                                class="icon-plus"></i>Add new</a>
                     </div>
                     <div class="wg-table table-all-user">
                         <table class="table table-striped table-bordered">
@@ -54,38 +53,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($subCategories as $sub)
+                                @foreach ($subCategories as $subcategory)
 
 
                                     <tr>
 
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 10px;">
-                                                <img src="{{ asset('image/' . $sub->category->image) }}" alt=""
+                                                <img src="{{ asset('image/' . $subcategory->category->image) }}" alt=""
                                                     style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
-                                                <span style="font-size: 14px;">{{ $sub->category->name }}</span>
+                                                <span style="font-size: 14px;">{{ $subcategory->category->name }}</span>
                                             </div>
                                         </td>
 
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 10px;">
-                                                <img src="{{ asset('image/' . $sub->image) }}" alt=""
+                                                <img src="{{ asset('image/' . $subcategory->image) }}" alt=""
                                                     style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
-                                                <span style="font-size: 14px;">{{ $sub->name }}</span>
+                                                <span style="font-size: 14px;">{{ $subcategory->name }}</span>
                                             </div>
                                         </td>
-                                        <td>{{$sub->slug}}</td>
-                                        <td>{{$sub->description}}</td>
-                                        <td>{{$sub->created_at}}</td>
-                                        <td>{{$sub->updated_at}}</td>
+                                        <td>{{$subcategory->slug}}</td>
+                                        <td>{{$subcategory->description}}</td>
+                                        <td>{{$subcategory->created_at}}</td>
+                                        <td>{{$subcategory->updated_at}}</td>
                                         <td>
                                             <div class="list-icon-function">
-                                                <a href="{{route('subcategories.edit', $sub->id)}}">
+                                                <a href="{{route('subcategories.edit', $subcategory->id)}}">
                                                     <div class="item edit">
                                                         <i class="icon-edit-3"></i>
                                                     </div>
                                                 </a>
-                                                <form action="{{ route('subcategories.destroy', $sub->id) }}" method="POST"
+                                                <form action="{{ route('subcategories.destroy', $subcategory->id) }}"
+                                                    method="POST"
                                                     onsubmit="return confirm('Are you sure you want to delete this Sub category?')">
                                                     @csrf
                                                     @method('DELETE')
@@ -108,8 +108,5 @@
             </div>
         </div>
 
-        <div class="bottom-page">
-            <div class="body-text">Copyright © 2024 SurfsideMedia</div>
-        </div>
     </div>
 @endsection

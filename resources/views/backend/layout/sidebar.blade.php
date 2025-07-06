@@ -65,12 +65,12 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="sub-menu-item">
-                            <a href="{{route('add_products')}}" class="">
+                            <a href="{{route('products.create')}}" class="">
                                 <div class="text">Add Product</div>
                             </a>
                         </li>
                         <li class="sub-menu-item">
-                            <a href="{{route('products')}}" class="">
+                            <a href="{{route('products.index')}}" class="">
                                 <div class="text">Products</div>
                             </a>
                         </li>

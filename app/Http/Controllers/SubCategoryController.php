@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\SubCategory;
 use App\Models\Category;
 use GuzzleHttp\Promise\Create;
@@ -91,7 +92,7 @@ class SubCategoryController extends Controller
             'slug' => 'required',
             'image' => 'nullable|mimes:jpg,png,jped,svg|max:5048',
         ]);
-       if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $slug = Str::slug($request->slug, '-');
             $Newimage_name = uniqid() . $slug . '.' . $request->image->extension();
             $request->image->move(public_path('image'), $Newimage_name);
@@ -99,24 +100,27 @@ class SubCategoryController extends Controller
             $subCategory->update([
                 'image' => $Newimage_name,
             ]);
-        } else{
-        $subCategory->update([
-            'category_id' => $request->category_id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'meta_title' => $request->meta_title,
-            'meta_description' => $request->meta_description,
-            'slug' => $request->slug,
-        ]);
-    }
+        } else {
+            $subCategory->update([
+                'category_id' => $request->category_id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'meta_title' => $request->meta_title,
+                'meta_description' => $request->meta_description,
+                'slug' => $request->slug,
+            ]);
+        }
         return redirect()->route('subcategories.index')->with('success', 'Sub Category updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SubCategory $subCategory)
+
+
+    public function destroy(SubCategory $subcategory)
     {
-        //
+        $subcategory->delete();
+        return redirect()->route('subcategories.index');
     }
 }

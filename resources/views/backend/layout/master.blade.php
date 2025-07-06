@@ -38,7 +38,6 @@
             </div>
         </div>
     </div>
-
     <script src="{{asset('backend\assets\js/jquery.min.js')}}"></script>
     <script src="{{asset('backend\assets\js/bootstrap.min.js')}}"></script>
     <script src="{{asset('backend\assets\js/bootstrap-select.min.js')}}"></script>

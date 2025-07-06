@@ -34,82 +34,92 @@
                                 </div>
                             </form>
                         </div>
-                        <a class="tf-button style-1 w208" href="{{route('add_products')}}"><i class="icon-plus"></i>Add
+                        <a class="tf-button style-1 w208" href="{{route('products.create')}}"><i class="icon-plus"></i>Add
                             new</a>
                     </div>
-                    <div class="table-responsive">
+
+
+                    <div class="wg-table table-all-user">
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
+                                    <th>Category Name</th>
+                                    <th>Sub Category Name</th>
+                                    <th>Product Name</th>
                                     <th>Price</th>
                                     <th>SalePrice</th>
                                     <th>SKU</th>
-                                    <th>Category</th>
-                                    <th>Brand</th>
-                                    <th>Featured</th>
                                     <th>Stock</th>
                                     <th>Quantity</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>6</td>
-                                    <td class="pname">
-                                        <div class="image">
-                                            <img src="1718623519.html" alt="" class="image">
-                                        </div>
-                                        <div class="name">
-                                            <a href="#" class="body-title-2">Product6</a>
-                                            <div class="text-tiny mt-3">product6</div>
-                                        </div>
-                                    </td>
-                                    <td>$128.00</td>
-                                    <td>$110.00</td>
-                                    <td>SKU7868</td>
-                                    <td>Category3</td>
-                                    <td>Brand2</td>
-                                    <td>Yes</td>
-                                    <td>instock</td>
-                                    <td>11</td>
-                                    <td>
-                                        <div class="list-icon-function">
-                                            <a href="#" target="_blank">
-                                                <div class="item eye">
-                                                    <i class="icon-eye"></i>
-                                                </div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="item edit">
-                                                    <i class="icon-edit-3"></i>
-                                                </div>
-                                            </a>
-                                            <form action="#" method="POST">
-                                                <div class="item text-danger delete">
-                                                    <i class="icon-trash-2"></i>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($Products as $product)
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <img src="{{ asset('image/' . $product->category->image) }}" alt=""
+                                                    style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
+                                                <span style="font-size: 14px;">{{ $product->category->name }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <img src="{{ asset('image/' . $product->subcategory->image) }}" alt=""
+                                                    style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
+                                                <span style="font-size: 14px;">{{ $product->subcategory->name }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <img src="{{ asset('images/products/' . $product->image) }}" alt=""
+                                                    style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
+                                                <span style="font-size: 14px;">{{ $product->name }}</span>
+                                            </div>
+                                        </td>
+                                        <td>{{$product->price}}</td>
+                                        <td>{{$product->sale_price}}</td>
+                                        <td>{{$product->sku}}</td>
+                                        <td>{{$product->stock_status}}</td>
+                                        <td>{{$product->stock_quantity}}</td>
+                                        <td>
+                                            <div class="list-icon-function">
+                                                <a href="{{route('products.edit', $product->id)}}">
+                                                    <div class="item edit">
+                                                        <i class="icon-edit-3"></i>
+                                                    </div>
+                                                </a>
+                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to delete this product?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="item text-danger delete"
+                                                        style="background: none; border: none; padding: 0;">
+                                                        <i class="icon-trash-2"></i>
+                                                    </button>
+                                                </form>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
-
                     <div class="divider"></div>
-                    <div class="flex items-center justify-between flex-wrap gap10 wgp-pagination">
+                    <div class="flex items-center justify-between flex-wrap gap10 wgp-pagination"></div>
+                </div>
+
+                <div class="divider"></div>
+                <div class="flex items-center justify-between flex-wrap gap10 wgp-pagination">
 
 
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <div class="bottom-page">
-            <div class="body-text">Copyright © 2024 SurfsideMedia</div>
-        </div>
     </div>
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BackendControllers\CategoryController;
+use App\Http\Controllers\BackendControllers\ProductsController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubCategoryController;
@@ -35,18 +36,19 @@ Route::get('/account_details', [PagesController::class, 'account_details'])->nam
 Route::get('/admin_login', [PagesController::class, 'admin_login'])->name('admin_login');
 Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
 Route::get('/add_category', [PagesController::class, 'add_category'])->name('add_category');
-Route::get('/products', [PagesController::class, 'products'])->name('products');
-Route::get('/add_products', [PagesController::class, 'add_products'])->name('add_products');
+/* Route::get('/products', [PagesController::class, 'products'])->name('products'); */
+/* Route::get('/add_products', [PagesController::class, 'add_products'])->name('add_products'); */
 Route::get('/backend_orders', [PagesController::class, 'backend_orders'])->name('backend_orders');
 Route::get('/order_traking', [PagesController::class, 'order_traking'])->name('order_traking');
 Route::get('/coupons', [PagesController::class, 'coupons'])->name('coupons');
 Route::get('/users', [PagesController::class, 'users'])->name('users');
 Route::get('/admin_settings', [PagesController::class, 'admin_settings'])->name('admin_settings');
-Route::get('/product_details', [PagesController::class, 'product_details'])->name('product_details');
-
+/* Route::get('/product_details', [PagesController::class, 'product_details'])->name('product_details');
+ */
 
 route::resource('categories', CategoryController::class);
 route::resource('subcategories', SubCategoryController::class);
+route::resource('products', ProductsController::class);
 
 
 Route::get('/myaccount', [PagesController::class, 'myaccount'])->middleware(['auth', 'verified'])->name('myaccount');
