@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        $this->call([
+            CategoriesSeeder::class,
+            SubCategoriesSeeder::class,
+            ProductsSeeder::class,
+        ]);
+
         $roles = [
             [
                 'name' => 'admin',

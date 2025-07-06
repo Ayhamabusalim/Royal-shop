@@ -23,25 +23,7 @@
                                 <input type="text" placeholder="Search here..." class="show-search" name="name" tabindex="2"
                                     value="{{ old('name') }}" aria-required="true" required>
                             </fieldset>
-                            <!-- بقية الحقول حسب الفورم الأصلي... -->
 
-                            <!-- حقل رفع الصورة الرئيسية -->
-                            <fieldset class="name">
-                                <label>Upload Main Image</label>
-                                <input type="file" name="image" accept="image/*" required>
-                                @error('image')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </fieldset>
-
-                            <!-- حقل رفع أكثر من صورة للجاليري -->
-                            <fieldset class="name">
-                                <label>Upload Gallery Images</label>
-                                <input type="file" name="gallery[]" accept="image/*" multiple>
-                                @error('gallery.*')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </fieldset>
 
                             <div class="button-submit">
                                 <button type="submit"><i class="icon-search"></i> Submit</button>
@@ -119,16 +101,13 @@
                             </div>
                         </div>
 
-
-
-
                         <div class="popup-wrap user type-header">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="header-user wg-user">
                                         <span class="image">
-                                            <img src="images/avatar/user-1.png" alt="">
+                                            <img src="{{asset('images/avatar/user-1.png')}}" alt="">
                                         </span>
                                         <span class="flex flex-column">
                                             <span class="body-title mb-2">Kristin Watson</span>
