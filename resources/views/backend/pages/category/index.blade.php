@@ -59,7 +59,7 @@
 
                                         <td class="pname">
                                             <div class="image">
-                                                <img src="image/{{$category->image}}" alt="" class="image" />
+                                                <img src="images/categories/{{$category->image}}" alt="" class="image" />
                                             </div>
                                             <div class="name">
                                                 <a href="#" class="body-title-2">{{$category->name}}</a>

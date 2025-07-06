@@ -94,7 +94,7 @@
                             <div class="upload-image flex-grow">
                                 @if ($subcategory->image)
                                     <div class="item" style="margin-bottom: 10px;">
-                                        <img src="{{ asset('image/' . $subcategory->image) }}" alt="Current Image"
+                                        <img src="{{ asset('images/subcategories/' . $subcategory->image) }}" alt="Current Image"
                                             style="max-width: 200px;">
                                     </div>
                                 @endif

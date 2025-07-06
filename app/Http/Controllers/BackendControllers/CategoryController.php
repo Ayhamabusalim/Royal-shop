@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
         $slug = str::slug($request->slug, '-');
         $Newimage_name = uniqid() . $slug . '.' . $request->image->extension();
-        $request->image->move(public_path('image'), $Newimage_name);
+        $request->image->move(public_path('images/categories'), $Newimage_name);
 
         Category::create([
             'name' => $request->name,
@@ -84,37 +84,52 @@ class CategoryController extends Controller
             'meta_title' => 'required',
             'meta_description' => 'required',
             'slug' => 'required',
-            'image' => 'nullable|mimes:jpg,png,jped,svg|max:5048',
+            'image' => 'nullable|mimes:jpg,png,jpeg,svg|max:5048',
         ]);
 
-        if ($request->hasFile('image')) {
-            $slug = Str::slug($request->slug, '-');
-            $Newimage_name = uniqid() . $slug . '.' . $request->image->extension();
-            $request->image->move(public_path('image'), $Newimage_name);
+        $data = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
+            'slug' => $request->slug,
+        ];
 
-            $category->update([
-                'image' => $Newimage_name,
-            ]);
-        } else {
-            $category->update([
-                'category_id' => $request->category_id,
-                'name' => $request->name,
-                'description' => $request->description,
-                'meta_title' => $request->meta_title,
-                'meta_description' => $request->meta_description,
-                'slug' => $request->slug,
-            ]);
+        if ($request->hasFile('image')) {
+            if ($category->image) {
+                $oldImagePath = public_path('images/categories/' . $category->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $slug = Str::slug($request->slug, '-');
+            $newImageName = uniqid() . '-' . $slug . '.' . $request->image->extension();
+            $request->image->move(public_path('images/categories'), $newImageName);
+
+            $data['image'] = $newImageName;
         }
 
-        return redirect()->route('categories.index');
+        $category->update($data);
+
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Category $category)
     {
+        if ($category->image) {
+            $imagePath = public_path('images/categories/' . $category->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
         $category->delete();
-        return redirect()->route('categories.index');
+
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
     }
 }

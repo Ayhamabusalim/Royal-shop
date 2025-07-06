@@ -59,14 +59,15 @@
                                     <tr>
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 10px;">
-                                                <img src="{{ asset('image/' . $product->category->image) }}" alt=""
+                                                <img src="{{ asset('images/categories/' . $product->category->image) }}" alt=""
                                                     style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
                                                 <span style="font-size: 14px;">{{ $product->category->name }}</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 10px;">
-                                                <img src="{{ asset('image/' . $product->subcategory->image) }}" alt=""
+                                                <img src="{{ asset('images/subcategories/' . $product->subcategory->image) }}"
+                                                    alt=""
                                                     style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
                                                 <span style="font-size: 14px;">{{ $product->subcategory->name }}</span>
                                             </div>

@@ -41,13 +41,12 @@ class ProductsController extends Controller
             'category_id' => 'required|exists:categories,id',
             'subcategory_id' => 'required|exists:sub_categories,id',
             'slug' => 'required|string|max:255|unique:products,slug',
-            'meta_title' => 'string|max:255',
-            'meta_description' => 'string|max:500',
-            'short_description' => 'string|max:500',
-            'description' => 'string',
-            'image' => 'required|mimes:jpg,png,jpeg,svg,webp,max:5048',
-
-            'gallery.*' => 'mimes:jpg,png,jpeg,svg,webp,max:5048',
+            'meta_title' => 'string|max:255|nullable',
+            'meta_description' => 'string|max:500|nullable',
+            'short_description' => 'string|max:500|nullable',
+            'description' => 'string|nullable',
+            'image' => 'required|mimes:jpg,png,jpeg,svg,webp|max:5048',
+            'gallery.*' => 'mimes:jpg,png,jpeg,svg,webp|max:5048',
             'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
             'sale_price' =>  'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
             'cost_price' =>  'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
@@ -58,21 +57,23 @@ class ProductsController extends Controller
             'stock_status' => 'required|in:in_stock,out_of_stock,on_backorder',
             'is_featured' => 'required|boolean',
         ]);
+
+        // رفع الصورة الرئيسية
+        $slug = Str::slug($request->slug, '-');
+        $newImageName = uniqid() . '-' . $slug . '.' . $request->image->extension();
+        $request->image->move(public_path('images/products'), $newImageName);
+
+        // رفع صور الجاليري
         $galleryImages = [];
-
-        $slug = str::slug($request->slug, '-');
-        $Newimage_name = uniqid() . $slug . '.' . $request->image->extension();
-        $request->image->move(public_path('images/products'), $Newimage_name);
-
-        if ($request->hasfile('gallery')) {
+        if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $file) {
-                $filename = time() . '_' . $file->getClientOriginalName();
+                $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $file->move(public_path('images/products'), $filename);
                 $galleryImages[] = $filename;
             }
         }
 
-
+        // حفظ المنتج مع الصور
         Product::create([
             'name' => $request->name,
             'category_id' => $request->category_id,
@@ -82,7 +83,7 @@ class ProductsController extends Controller
             'meta_description' => $request->meta_description,
             'short_description' => $request->short_description,
             'description' => $request->description,
-            'image' => $Newimage_name,
+            'image' => $newImageName,
             'gallery' => json_encode($galleryImages),
             'price' => $request->price,
             'sale_price' => $request->sale_price,
@@ -94,7 +95,8 @@ class ProductsController extends Controller
             'stock_status' =>  $request->stock_status,
             'is_featured' =>  $request->is_featured,
         ]);
-        return redirect()->route('products.index')->with('success', 'Sub Category created successfully.');
+
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -146,7 +148,6 @@ class ProductsController extends Controller
             'is_featured' => 'required|boolean',
         ]);
 
-        // تهيئة البيانات المُحدثة
         $data = $request->only([
             'name',
             'category_id',
@@ -167,36 +168,68 @@ class ProductsController extends Controller
             'is_featured',
         ]);
 
-        // معالجة الصورة الرئيسية إذا تم رفعها
         if ($request->hasFile('image')) {
+            if ($product->image) {
+                $oldImagePath = public_path('images/products/' . $product->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
             $imageName = uniqid() . '_' . Str::slug($request->slug) . '.' . $request->file('image')->extension();
             $request->file('image')->move(public_path('images/products'), $imageName);
             $data['image'] = $imageName;
         }
 
-        // تحديث بيانات المنتج
         $product->update($data);
 
-        // معالجة صور الجاليري إذا تم رفعها
         if ($request->hasFile('gallery')) {
+            if ($product->gallery) {
+                $oldGallery = json_decode($product->gallery, true);
+                foreach ($oldGallery as $oldImg) {
+                    $oldPath = public_path('images/products/' . $oldImg);
+                    if (file_exists($oldPath)) {
+                        unlink($oldPath);
+                    }
+                }
+            }
+
             $galleryImages = [];
 
             foreach ($request->file('gallery') as $file) {
-                $filename = time() . '_' . $file->getClientOriginalName();
+                $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $file->move(public_path('images/products'), $filename);
                 $galleryImages[] = $filename;
             }
 
-            // حفظ أسماء صور الجاليري بصيغة JSON داخل عمود gallery
             $product->gallery = json_encode($galleryImages);
             $product->save();
         }
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
+
     public function destroy(Product $product)
     {
+        if ($product->image) {
+            $imagePath = public_path('images/products/' . $product->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
+        if ($product->gallery) {
+            $galleryImages = json_decode($product->gallery, true);
+            foreach ($galleryImages as $image) {
+                $imagePath = public_path('images/products/' . $image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+        }
+
         $product->delete();
-        return redirect()->route('products.index');
+
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
 }

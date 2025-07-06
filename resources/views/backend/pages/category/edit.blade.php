@@ -80,7 +80,7 @@
                                 {{-- Show current image if available --}}
                                 @if($category->image)
                                     <div class="item">
-                                        <img src="{{ asset('image/' . $category->image) }}" class="effect8" alt="Current Image"
+                                        <img src="{{ asset('images/categories/' . $category->image) }}" class="effect8" alt="Current Image"
                                             style="max-height: 150px;">
                                     </div>
                                 @endif

@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-           $table->id(); // BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT
+            $table->id(); // BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT
 
             $table->foreignId('category_id')
-                  ->constrained('categories')
-                  ->onDelete('cascade');
+                ->constrained('categories')
+                ->onDelete('cascade');
 
             $table->foreignId('subcategory_id')
-                  ->constrained('sub_categories')
-                  ->onDelete('cascade');
+                ->constrained('sub_categories')
+                ->onDelete('cascade');
 
             $table->string('name', 255);
             $table->string('slug', 255)->unique();

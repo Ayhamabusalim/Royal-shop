@@ -60,7 +60,7 @@
 
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 10px;">
-                                                <img src="{{ asset('image/' . $subcategory->category->image) }}" alt=""
+                                                <img src="{{ asset('images/categories/' . $subcategory->category->image) }}" alt=""
                                                     style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
                                                 <span style="font-size: 14px;">{{ $subcategory->category->name }}</span>
                                             </div>
@@ -68,7 +68,7 @@
 
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 10px;">
-                                                <img src="{{ asset('image/' . $subcategory->image) }}" alt=""
+                                                <img src="{{ asset('images/subcategories/' . $subcategory->image) }}" alt=""
                                                     style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
                                                 <span style="font-size: 14px;">{{ $subcategory->name }}</span>
                                             </div>
