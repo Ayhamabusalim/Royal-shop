@@ -14,6 +14,7 @@ class PagesController extends Controller
 {
     public function index()
     {
+        
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $products = Product::paginate(16);
