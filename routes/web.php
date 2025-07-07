@@ -50,7 +50,7 @@ Route::get('/admin_settings', [PagesController::class, 'admin_settings'])->name(
 route::resource('categories', CategoryController::class);
 route::resource('subcategories', SubCategoryController::class);
 route::resource('products', ProductsController::class);
-route::resource('cart', ProductsController::class);
+
 
 
 Route::get('/myaccount', [PagesController::class, 'myaccount'])->middleware(['auth', 'verified'])->name('myaccount');
@@ -64,8 +64,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::middleware(['auth', 'role:user'])->group(function () {
-    
-});
+Route::middleware(['auth', 'role:user'])->group(function () {});
 
 require __DIR__ . '/auth.php';
