@@ -7,7 +7,7 @@
                     <h3>Sub Categories</h3>
                     <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                         <li>
-                            <a href="index.html">
+                            <a href="{{route('dashboard')}}">
                                 <div class="text-tiny">Dashboard</div>
                             </a>
                         </li>
@@ -60,7 +60,8 @@
 
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 10px;">
-                                                <img src="{{ asset('images/categories/' . $subcategory->category->image) }}" alt=""
+                                                <img src="{{ asset('images/categories/' . $subcategory->category->image) }}"
+                                                    alt=""
                                                     style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
                                                 <span style="font-size: 14px;">{{ $subcategory->category->name }}</span>
                                             </div>

@@ -8,7 +8,7 @@
                     <h3> Sub Category infomation</h3>
                     <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                         <li>
-                            <a href="#">
+                            <a href="{{route('dashboard')}}">
                                 <div class="text-tiny">Dashboard</div>
                             </a>
                         </li>
@@ -16,7 +16,7 @@
                             <i class="icon-chevron-right"></i>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{route('subcategories.index')}}">
                                 <div class="text-tiny">Sub Categories</div>
                             </a>
                         </li>
@@ -94,8 +94,8 @@
                             <div class="upload-image flex-grow">
                                 @if ($subcategory->image)
                                     <div class="item" style="margin-bottom: 10px;">
-                                        <img src="{{ asset('images/subcategories/' . $subcategory->image) }}" alt="Current Image"
-                                            style="max-width: 200px;">
+                                        <img src="{{ asset('images/subcategories/' . $subcategory->image) }}"
+                                            alt="Current Image" style="max-width: 200px;">
                                     </div>
                                 @endif
                                 <div id="upload-file" class="item up-load">
@@ -120,6 +120,6 @@
             </div>
         </div>
 
-       
+
     </div>
 @endsection

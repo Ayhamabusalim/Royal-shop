@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 use function Ramsey\Uuid\v1;
+
 
 class PagesController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.index');
+        $categories = Category::all();
+        $subcategories = SubCategory::all();
+        $products = Product::paginate(16);
+        return view('frontend.pages.index', compact('subcategories', 'categories', 'products'));
     }
 
     public function shop()
@@ -93,7 +100,7 @@ class PagesController extends Controller
     {
         return view('backend.pages.products.index');
     }
-   /*  public function add_products()
+    /*  public function add_products()
     {
         return view('backend.pages.products.add_products');
     } */

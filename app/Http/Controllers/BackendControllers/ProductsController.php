@@ -104,7 +104,11 @@ class ProductsController extends Controller
      */
     public function show(string $id)
     {
-        //
+         $product = Product::with(['category', 'subcategory'])->findOrFail($id);
+        $categories = Category::all();
+        $subcategories = Subcategory::all();
+
+        return view('backend.pages.products.product_details', compact('product', 'categories', 'subcategories'));
     }
 
     /**
@@ -232,4 +236,6 @@ class ProductsController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
+
+    
 }
