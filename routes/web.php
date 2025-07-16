@@ -69,6 +69,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/edit_category/{id}', [CategoryController::class, 'edit'])->name('edit_category');
     Route::put('/update_category/{category}', [CategoryController::class, 'update'])->name('update_category');
     Route::delete('/delete_category/{category}', [CategoryController::class, 'destroy'])->name('delete_category');
+
+
+    
 });
 
 

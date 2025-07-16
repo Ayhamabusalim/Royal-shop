@@ -1,24 +1,25 @@
-const { data } = require("alpinejs");
-
 $(document).ready(function () {
     $.ajaxSetup({
         headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token]').attr("content"),
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
     });
 
     $("#categories_table").DataTable({
+        processing: true,
+        serverSide: true,
         ajax: {
-            url: "categoreis.index",
+            url: "/categories", // نفس route لعرض الصفحة
             type: "GET",
         },
         columns: [
-            { data: "name" },
-            { data: "slug" },
-            { data: "description" },
-            { data: "created at" },
-            { data: "updated at" },
-            { data: "action" },
+            { data: "Image", name: "Image" },
+            { data: "Name", name: "Name" },
+            { data: "Slug", name: "Slug" },
+            { data: "Description", name: "Description" },
+            { data: "Created_at", name: "Created_at" },
+            { data: "Updated_at", name: "Updated_at" },
+            { data: "Action", name: "Action", orderable: false, searchable: false },
         ],
     });
 });

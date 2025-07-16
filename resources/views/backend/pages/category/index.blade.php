@@ -39,66 +39,29 @@
                             new</a>
                     </div>
                     <div class="wg-table table-all-user">
-                        <table class="table table-striped table-bordered">
+                        <<table class="table table-striped table-bordered" id="categories_table">
                             <thead>
                                 <tr>
+                                    <th>Image</th>
                                     <th>Name</th>
                                     <th>Slug</th>
                                     <th>Description</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
                                     <th>Action</th>
-
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($categories as $category)
+                            <tbody></tbody>
+                            </table>
 
-
-                                    <tr>
-
-                                        <td class="pname">
-                                            <div class="image">
-                                                <img src="images/categories/{{$category->image}}" alt="" class="image" />
-                                            </div>
-                                            <div class="name">
-                                                <a href="#" class="body-title-2">{{$category->name}}</a>
-                                            </div>
-                                        </td>
-                                        <td>{{$category->slug}}</td>
-                                        <td>{{$category->description}}</td>
-                                        <td><a href="#">{{$category->created_at}}</a></td>
-                                        <td><a href="#">{{$category->updated_at}}</a></td>
-                                        <td>
-                                            <div class="list-icon-function">
-                                                <a href="{{route('edit_category', ['id' => $category->id])}}">
-                                                    <div class="item edit">
-                                                        <i class="icon-edit-3"></i>
-                                                    </div>
-                                                </a>
-                                                <form action="{{ route('delete_category', $category->id) }}" method="POST"
-                                                    onsubmit="return confirm('Are you sure you want to delete this category?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="item text-danger delete"
-                                                        style="background: none; border: none; padding: 0;">
-                                                        <i class="icon-trash-2"></i>
-                                                    </button>
-                                                </form>
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
                     </div>
                     <div class="divider"></div>
                     <div class="flex items-center justify-between flex-wrap gap10 wgp-pagination"></div>
                 </div>
             </div>
         </div>
-
-
-    </div>z
+    </div>
+    @push('script')
+        <script src="{{asset('asset/categories.js')}}"></script>
+    @endpush
 @endsection

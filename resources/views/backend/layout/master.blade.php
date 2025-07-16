@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="author" content="themesflat.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-   <meta name="csrf-token" content="{{csrf_token()}}">
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <link rel="stylesheet" type="text/css" href="{{asset('backend\assets\css/animate.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('backend\assets\css/animation.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('backend\assets\css/bootstrap.css')}}">
@@ -147,7 +147,7 @@
         })(jQuery);
     </script>
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
-    @stack('scrips')
+    @stack('script')
 
 </body>
 
