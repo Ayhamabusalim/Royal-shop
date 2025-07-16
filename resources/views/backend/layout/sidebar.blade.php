@@ -29,12 +29,12 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="sub-menu-item">
-                            <a href="{{route('categories.create')}}" class="">
+                            <a href="{{route('create_category')}}" class="">
                                 <div class="text">New Category</div>
                             </a>
                         </li>
                         <li class="sub-menu-item">
-                            <a href="{{route('categories.index')}}" class="">
+                            <a href="{{route('categories')}}" class="">
                                 <div class="text">Categories</div>
                             </a>
                         </li>

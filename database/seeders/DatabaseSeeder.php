@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             SubCategoriesSeeder::class,
             ProductsSeeder::class,
+           
+            
+           
         ]);
 
         $roles = [

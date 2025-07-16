@@ -34,7 +34,6 @@ Route::get('/admin_dash', [PagesController::class, 'admin_dash'])->name('admin_d
 Route::get('/admin_dash', [PagesController::class, 'admin_dash'])->name('admin_dash');
 Route::get('/account_details', [PagesController::class, 'account_details'])->name('account_details');
 Route::get('/admin_login', [PagesController::class, 'admin_login'])->name('admin_login');
-Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
 Route::get('/add_category', [PagesController::class, 'add_category'])->name('add_category');
 /* Route::get('/products', [PagesController::class, 'products'])->name('products'); */
 /* Route::get('/add_products', [PagesController::class, 'add_products'])->name('add_products'); */
@@ -47,7 +46,7 @@ Route::get('/admin_settings', [PagesController::class, 'admin_settings'])->name(
 /* Route::get('/product_details', [PagesController::class, 'product_details'])->name('product_details');
  */
 
-route::resource('categories', CategoryController::class);
+/* route::resource('categories', CategoryController::class); */
 route::resource('subcategories', SubCategoryController::class);
 route::resource('products', ProductsController::class);
 
@@ -60,10 +59,29 @@ Route::get('/welcome', function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    /* dashboard route */
+    Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
+
+    /* categories routes  */
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+    Route::get('/add_category', [CategoryController::class, 'create'])->name('create_category');
+    Route::post('/store_category', [CategoryController::class, 'store'])->name('store_category');
+    Route::get('/edit_category/{id}', [CategoryController::class, 'edit'])->name('edit_category');
+    Route::put('/update_category/{category}', [CategoryController::class, 'update'])->name('update_category');
+    Route::delete('/delete_category/{category}', [CategoryController::class, 'destroy'])->name('delete_category');
 });
+
+
+
+
+
+
+
+
+
+
+
+
 Route::middleware(['auth', 'role:user'])->group(function () {});
 
 require __DIR__ . '/auth.php';

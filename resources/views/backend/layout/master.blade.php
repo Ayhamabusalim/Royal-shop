@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="author" content="themesflat.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="csrf-token" content="{{csrf_token()}}">
     <link rel="stylesheet" type="text/css" href="{{asset('backend\assets\css/animate.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('backend\assets\css/animation.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('backend\assets\css/bootstrap.css')}}">
@@ -17,6 +18,7 @@
     <link rel="apple-touch-icon-precomposed" href="{{asset('backend\assets\images/favicon.ico')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('backend\assets\css/sweetalert.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('backend\assets\css/custom.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
 </head>
 
 <body class="body">
@@ -38,6 +40,8 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="{{asset('backend\assets\js/jquery.min.js')}}"></script>
     <script src="{{asset('backend\assets\js/bootstrap.min.js')}}"></script>
     <script src="{{asset('backend\assets\js/bootstrap-select.min.js')}}"></script>
@@ -142,6 +146,9 @@
             jQuery(window).on("resize", function () { });
         })(jQuery);
     </script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+    @stack('scrips')
+
 </body>
 
 </html>

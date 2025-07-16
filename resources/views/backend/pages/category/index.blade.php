@@ -35,7 +35,7 @@
                                 </div>
                             </form>
                         </div>
-                        <a class="tf-button style-1 w208" href="{{route('categories.create')}}"><i class="icon-plus"></i>Add
+                        <a class="tf-button style-1 w208" href="{{route('create_category')}}"><i class="icon-plus"></i>Add
                             new</a>
                     </div>
                     <div class="wg-table table-all-user">
@@ -71,12 +71,12 @@
                                         <td><a href="#">{{$category->updated_at}}</a></td>
                                         <td>
                                             <div class="list-icon-function">
-                                                <a href="{{route('categories.edit', $category->id)}}">
+                                                <a href="{{route('edit_category', ['id' => $category->id])}}">
                                                     <div class="item edit">
                                                         <i class="icon-edit-3"></i>
                                                     </div>
                                                 </a>
-                                                <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
+                                                <form action="{{ route('delete_category', $category->id) }}" method="POST"
                                                     onsubmit="return confirm('Are you sure you want to delete this category?')">
                                                     @csrf
                                                     @method('DELETE')
@@ -100,5 +100,5 @@
         </div>
 
 
-    </div>
+    </div>z
 @endsection

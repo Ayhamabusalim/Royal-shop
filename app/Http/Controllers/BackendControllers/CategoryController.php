@@ -53,7 +53,7 @@ class CategoryController extends Controller
             'slug' => $slug,
             'image' => $Newimage_name,
         ]);
-        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
+        return redirect()->route('categories')->with('success', 'Category created successfully.');
     }
 
     /**
@@ -112,7 +112,7 @@ class CategoryController extends Controller
 
         $category->update($data);
 
-        return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
+        return redirect()->route('categories')->with('success', 'Category updated successfully.');
     }
 
 
@@ -130,6 +130,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('categories')->with('success', 'Category deleted successfully.');
     }
 }
