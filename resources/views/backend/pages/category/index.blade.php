@@ -23,36 +23,14 @@
                 <div class="wg-box">
                     <div class="flex items-center justify-between gap10 flex-wrap">
                         <div class="wg-filter flex-grow">
-                            <form class="form-search">
-                                <fieldset class="name">
-                                    <input type="text" placeholder="Search here..." class="" name="name" tabindex="2"
-                                        value="" aria-required="true" required="" />
-                                </fieldset>
-                                <div class="button-submit">
-                                    <button class="" type="submit">
-                                        <i class="icon-search"></i>
-                                    </button>
-                                </div>
-                            </form>
                         </div>
-                        <a class="tf-button style-1 w208" href="{{route('create_category')}}"><i class="icon-plus"></i>Add
-                            new</a>
+                        <button type="button" class="btn btn-primary mb-3 tf-button style-1 w208" data-bs-toggle="modal"
+                            data-bs-target="#ModelCreateCategory">
+                            Add new Category
+                        </button>
                     </div>
-                    <div class="wg-table table-all-user">
-                        <<table class="table table-striped table-bordered" id="categories_table">
-                            <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Slug</th>
-                                    <th>Description</th>
-                                    <th>Created at</th>
-                                    <th>Updated at</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                            </table>
+                    <div class="table-responsive">
+                        {!! $dataTable->table(['class' => 'table table-bordered table-striped table-hover align-middle w-100'], true) !!}
 
                     </div>
                     <div class="divider"></div>
@@ -61,7 +39,11 @@
             </div>
         </div>
     </div>
+    @include('backend.pages.category.component.create_category')
+    @include('backend.pages.category.component.edit_category')
     @push('script')
-        <script src="{{asset('asset/categories.js')}}"></script>
+        {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+        <script src="{{asset('assets/js/backend/categories.js')}}"></script>
+
     @endpush
 @endsection
