@@ -299,7 +299,7 @@
                                     <i class="icon-chevron-right"></i>
                                 </li>
                                 <li>
-                                     <a href="{{route('products.index')}}">
+                                     <a href="{{route('products')}}">
                                         <div class="text-tiny">Products</div>
                                     </a>
                                 </li>
@@ -322,7 +322,7 @@
                                 </ul>
                             </div>
                         @endif
-                       <form class="tf-section-2 form-add-product" method="POST" enctype="multipart/form-data"action="{{ route('products.update', $product->id) }}">
+                       <form class="tf-section-2 form-add-product" method="POST" enctype="multipart/form-data"action="{{ route('update_products', $product->id) }}">
                              @csrf
                              @method('PUT')
 

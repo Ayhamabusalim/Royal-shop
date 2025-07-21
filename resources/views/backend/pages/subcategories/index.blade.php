@@ -35,8 +35,8 @@
                                 </div>
                             </form>
                         </div>
-                        <a class="tf-button style-1 w208" href="{{route('subcategories.create')}}"><i
-                                class="icon-plus"></i>Add new</a>
+                        <a class="tf-button style-1 w208" href="{{route('add_subcategories')}}"><i class="icon-plus"></i>Add
+                            new</a>
                     </div>
                     <div class="wg-table table-all-user">
                         <table class="table table-striped table-bordered">
@@ -80,12 +80,12 @@
                                         <td>{{$subcategory->updated_at}}</td>
                                         <td>
                                             <div class="list-icon-function">
-                                                <a href="{{route('subcategories.edit', $subcategory->id)}}">
+                                                <a href="{{route('edit_subcategories', $subcategory->id)}}">
                                                     <div class="item edit">
                                                         <i class="icon-edit-3"></i>
                                                     </div>
                                                 </a>
-                                                <form action="{{ route('subcategories.destroy', $subcategory->id) }}"
+                                                <form action="{{ route('delete_subcategories', $subcategory->id) }}"
                                                     method="POST"
                                                     onsubmit="return confirm('Are you sure you want to delete this Sub category?')">
                                                     @csrf

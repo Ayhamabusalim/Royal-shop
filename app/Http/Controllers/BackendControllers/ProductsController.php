@@ -104,7 +104,7 @@ class ProductsController extends Controller
      */
     public function show(string $id)
     {
-         $product = Product::with(['category', 'subcategory'])->findOrFail($id);
+        $product = Product::with(['category', 'subcategory'])->findOrFail($id);
         $categories = Category::all();
         $subcategories = Subcategory::all();
 
@@ -213,8 +213,9 @@ class ProductsController extends Controller
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
-    public function destroy(Product $product)
+    public function destroy(Product $id)
     {
+        $product = Product::findOrFail($id);
         if ($product->image) {
             $imagePath = public_path('images/products/' . $product->image);
             if (file_exists($imagePath)) {
@@ -236,6 +237,4 @@ class ProductsController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
-
-    
 }

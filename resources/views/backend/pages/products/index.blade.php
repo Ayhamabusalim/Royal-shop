@@ -34,7 +34,7 @@
                                 </div>
                             </form>
                         </div>
-                        <a class="tf-button style-1 w208" href="{{route('products.create')}}"><i class="icon-plus"></i>Add
+                        <a class="tf-button style-1 w208" href="{{route('add_products')}}"><i class="icon-plus"></i>Add
                             new</a>
                     </div>
 
@@ -86,12 +86,12 @@
                                         <td>{{$product->stock_quantity}}</td>
                                         <td>
                                             <div class="list-icon-function">
-                                                <a href="{{route('products.edit', $product->id)}}">
+                                                <a href="{{route('edit_products', $product->id)}}">
                                                     <div class="item edit">
                                                         <i class="icon-edit-3"></i>
                                                     </div>
                                                 </a>
-                                                <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                                <form action="{{ route('delete_products', $product->id) }}" method="POST"
                                                     onsubmit="return confirm('Are you sure you want to delete this product?')">
                                                     @csrf
                                                     @method('DELETE')

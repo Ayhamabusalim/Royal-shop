@@ -47,12 +47,12 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="sub-menu-item">
-                            <a href="{{route('subcategories.create')}}" class="">
+                            <a href="{{route('add_subcategories')}}" class="">
                                 <div class="text">New Sub Category</div>
                             </a>
                         </li>
                         <li class="sub-menu-item">
-                            <a href="{{route('subcategories.index')}}" class="">
+                            <a href="{{route('subcategories')}}" class="">
                                 <div class="text">Sub Categories</div>
                             </a>
                         </li>
@@ -65,12 +65,12 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="sub-menu-item">
-                            <a href="{{route('products.create')}}" class="">
+                            <a href="{{route('add_products')}}" class="">
                                 <div class="text">Add Product</div>
                             </a>
                         </li>
                         <li class="sub-menu-item">
-                            <a href="{{route('products.index')}}" class="">
+                            <a href="{{route('products')}}" class="">
                                 <div class="text">Products</div>
                             </a>
                         </li>
