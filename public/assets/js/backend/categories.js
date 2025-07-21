@@ -5,6 +5,10 @@ $(document).ready(function () {
         },
     });
 
+    $("#openCreateCategory").on("click", function () {
+        $("#create-form-category")[0].reset();
+    });
+
     $("#create-form-category").on("submit", function (e) {
         e.preventDefault();
 
@@ -42,7 +46,6 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.status) {
                     let data = response.data;
-                    $("#category-id").val(data.id);
                     $("input[name='name']").val(data.name);
                     $("input[name='slug']").val(data.slug);
                     $("input[name='description']").val(data.description);
@@ -79,9 +82,6 @@ $(document).ready(function () {
             data: formData,
             processData: false,
             contentType: false,
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
             success: function (res) {
                 console.log(res);
                 Swal.fire({
@@ -114,11 +114,6 @@ $(document).ready(function () {
                 $.ajax({
                     url: "/delete_category/" + id,
                     type: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
-                    },
                     success: function (res) {
                         Swal.fire({
                             title: "Deleted!",

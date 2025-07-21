@@ -5,6 +5,7 @@ namespace App\Http\Controllers\BackendControllers;
 use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Categories\StoreRequest;
+use App\Http\Requests\Backend\Categories\UpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Category;
@@ -78,29 +79,20 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         $category = Category::findOrFail($id);
 
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'meta_title' => 'required',
-            'meta_description' => 'required',
-            'slug' => 'required',
-            'image' => 'nullable|mimes:jpg,png,jpeg,svg|max:5048',
-        ]);
+        $request->validate([]);
 
-        // تحديث البيانات الأساسية
+
         $category->name = $request->name;
         $category->description = $request->description;
         $category->meta_title = $request->meta_title;
         $category->meta_description = $request->meta_description;
         $category->slug = $request->slug;
 
-        // رفع صورة جديدة إذا تم اختيارها
         if ($request->hasFile('image')) {
-            // حذف الصورة القديمة إن وجدت
             if ($category->image && file_exists(public_path('images/' . $category->image))) {
                 unlink(public_path('images/' . $category->image));
             }

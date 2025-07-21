@@ -24,8 +24,8 @@
                     <div class="flex items-center justify-between gap10 flex-wrap">
                         <div class="wg-filter flex-grow">
                         </div>
-                        <button type="button" class="btn btn-primary mb-3 tf-button style-1 w208" data-bs-toggle="modal"
-                            data-bs-target="#ModelCreateCategory">
+                        <button type="button" class="btn btn-primary mb-3 tf-button style-1 w208" id="openCreateCategory"
+                            data-bs-toggle="modal" data-bs-target="#ModelCreateCategory">
                             Add new Category
                         </button>
                     </div>
