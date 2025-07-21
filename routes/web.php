@@ -64,18 +64,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     /* Sub categories routes  */
     Route::get('/subcategories', [SubCategoryController::class, 'index'])->name('subcategories');
     Route::get('/add_subcategories', [SubCategoryController::class, 'create'])->name('add_subcategories');
-    Route::get('/store_subcategories', [SubCategoryController::class, 'store'])->name('store_subcategories');
+    Route::get('/get_categoriesJson', [SubCategoryController::class, 'getJson'])->name('get_categoriesJson');
+    Route::post('/store_subcategories', [SubCategoryController::class, 'store'])->name('store_subcategories');
     Route::get('/edit_subcategories', [SubCategoryController::class, 'edit'])->name('edit_subcategories');
-    Route::get('/update_subcategories', [SubCategoryController::class, 'update'])->name('update_subcategories');
-    Route::get('/delete_subcategories', [SubCategoryController::class, 'destroy'])->name('delete_subcategories');
+    Route::put('/update_subcategories', [SubCategoryController::class, 'update'])->name('update_subcategories');
+    Route::delete('/delete_subcategories', [SubCategoryController::class, 'destroy'])->name('delete_subcategories');
 
-    /* Sub Products routes  */
+    /*  Products routes  */
     Route::get('/products', [ProductsController::class, 'index'])->name('products');
     Route::get('/add_products', [ProductsController::class, 'create'])->name('add_products');
-    Route::get('/store_products', [ProductsController::class, 'store'])->name('store_products');
+    Route::post('/store_products', [ProductsController::class, 'store'])->name('store_products');
     Route::get('/edit_products/{id}', [ProductsController::class, 'edit'])->name('edit_products');
-    Route::get('/update_products/{id}', [ProductsController::class, 'update'])->name('update_products');
-    Route::get('/delete_products/{id}', [ProductsController::class, 'destroy'])->name('delete_products');
+    Route::put('/update_products/{id}', [ProductsController::class, 'update'])->name('update_products');
+    Route::delete('/delete_products/{id}', [ProductsController::class, 'destroy'])->name('delete_products');
 });
 
 

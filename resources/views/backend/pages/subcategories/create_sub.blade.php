@@ -16,7 +16,7 @@
                             <i class="icon-chevron-right"></i>
                         </li>
                         <li>
-                            <a href="{{route('subcategories.index')}}">
+                            <a href="{{route('add_subcategories')}}">
                                 <div class="text-tiny">Sub Categories</div>
                             </a>
                         </li>
@@ -30,7 +30,7 @@
                 </div>
                 <!-- new-category -->
                 <div class="wg-box">
-                    <form class="form-new-product form-style-1" action="{{ route('subcategories.store') }}" method="POST"
+                    <form class="form-new-product form-style-1" action="{{ route('store_subcategories') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <fieldset class="name">

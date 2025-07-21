@@ -23,85 +23,16 @@
                 <div class="wg-box">
                     <div class="flex items-center justify-between gap10 flex-wrap">
                         <div class="wg-filter flex-grow">
-                            <form class="form-search">
-                                <fieldset class="name">
-                                    <input type="text" placeholder="Search here..." class="" name="name" tabindex="2"
-                                        value="" aria-required="true" required="" />
-                                </fieldset>
-                                <div class="button-submit">
-                                    <button class="" type="submit">
-                                        <i class="icon-search"></i>
-                                    </button>
-                                </div>
-                            </form>
+
                         </div>
-                        <a class="tf-button style-1 w208" href="{{route('add_subcategories')}}"><i class="icon-plus"></i>Add
-                            new</a>
+                        <button type="button" class="btn btn-primary mb-3 tf-button style-1 w208" id="openSubCreateCategory"
+                            data-bs-toggle="modal" data-bs-target="#ModelSubCreateCategory">
+                            Add new Sub Category
+                        </button>
                     </div>
-                    <div class="wg-table table-all-user">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Category Name</th>
-                                    <th>Sub Category Name</th>
-                                    <th>Slug</th>
-                                    <th>Description</th>
-                                    <th>Created at</th>
-                                    <th>Updated at</th>
-                                    <th>Action</th>
+                    <div class="table-responsive">
+                        {!! $dataTable->table(['class' => 'table table-bordered table-striped table-hover align-middle w-100'], true) !!}
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($subCategories as $subcategory)
-
-
-                                    <tr>
-
-                                        <td>
-                                            <div style="display: flex; align-items: center; gap: 10px;">
-                                                <img src="{{ asset('images/categories/' . $subcategory->category->image) }}"
-                                                    alt=""
-                                                    style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
-                                                <span style="font-size: 14px;">{{ $subcategory->category->name }}</span>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div style="display: flex; align-items: center; gap: 10px;">
-                                                <img src="{{ asset('images/subcategories/' . $subcategory->image) }}" alt=""
-                                                    style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />
-                                                <span style="font-size: 14px;">{{ $subcategory->name }}</span>
-                                            </div>
-                                        </td>
-                                        <td>{{$subcategory->slug}}</td>
-                                        <td>{{$subcategory->description}}</td>
-                                        <td>{{$subcategory->created_at}}</td>
-                                        <td>{{$subcategory->updated_at}}</td>
-                                        <td>
-                                            <div class="list-icon-function">
-                                                <a href="{{route('edit_subcategories', $subcategory->id)}}">
-                                                    <div class="item edit">
-                                                        <i class="icon-edit-3"></i>
-                                                    </div>
-                                                </a>
-                                                <form action="{{ route('delete_subcategories', $subcategory->id) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Are you sure you want to delete this Sub category?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="item text-danger delete"
-                                                        style="background: none; border: none; padding: 0;">
-                                                        <i class="icon-trash-2"></i>
-                                                    </button>
-                                                </form>
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
                     </div>
                     <div class="divider"></div>
                     <div class="flex items-center justify-between flex-wrap gap10 wgp-pagination"></div>
@@ -110,4 +41,9 @@
         </div>
 
     </div>
+    @include('backend.pages.subcategories.component.create_subcategory')
+    @push('script')
+        {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+        <script src="{{asset('assets/js/backend/subcategories.js')}}"></script>
+    @endpush
 @endsection
