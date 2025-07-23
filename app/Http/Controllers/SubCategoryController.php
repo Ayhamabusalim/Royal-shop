@@ -51,9 +51,9 @@ class SubCategoryController extends Controller
             'slug' => $request->slug,
             'image' => $Newimage_name,
         ]);
-       return response()->json([
-        'message' => 'Sub Category created successfully.',
-    ]);
+        return response()->json([
+            'message' => 'Sub Category created successfully.',
+        ]);
     }
 
     /**
@@ -67,19 +67,39 @@ class SubCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    /* public function edit($id)
     {
         $categories = Category::all();
         $subcategory = SubCategory::findOrFail($id);
         return view('backend.pages.subcategories.edit_sub', compact('subcategory', 'categories'));
+    } */
+    public function edit(Subcategory $subcategory)
+    {
+        try {
+            $categories = Category::latest()->get();
+
+            return response()->json([
+                'status' => true,
+                'subcategory' => $subcategory,
+                'categories' => $categories,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'title' => 'Fetch subcategory Failed!',
+                'message' => 'An error occurred while fetching the subcategory data.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, SubCategory $subcategory)
+    public function update(UpdateRequest $request, $id)
     {
-
+        $subcategory = SubCategory::findOrFail($id);
 
         $data = [
             'category_id' => $request->category_id,
@@ -126,8 +146,9 @@ class SubCategoryController extends Controller
      */
 
 
-    public function destroy(SubCategory $subcategory)
+    public function destroy($id)
     {
+        $subcategory = SubCategory::findOrFail($id);
         if ($subcategory->image) {
             $imagePath = public_path('images/subcategories/' . $subcategory->image);
             if (file_exists($imagePath)) {
@@ -137,7 +158,10 @@ class SubCategoryController extends Controller
 
         $subcategory->delete();
 
-        return redirect()->route('subcategories.index')->with('success', 'Sub Category deleted successfully.');
+        return response()->json([
+            'status' => true,
+            'message' => 'sub Category deleted successfully.'
+        ]);
     }
 
     public function getJson()

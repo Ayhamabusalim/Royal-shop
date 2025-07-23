@@ -42,6 +42,7 @@
 
     </div>
     @include('backend.pages.subcategories.component.create_subcategory')
+    @include('backend.pages.subcategories.component.edit_subcategory')
     @push('script')
         {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
         <script src="{{asset('assets/js/backend/subcategories.js')}}"></script>
