@@ -5,7 +5,9 @@
         <section class="my-account container">
             <h2 class="page-title">Account Details</h2>
             <div class="row">
-
+                <div class="col-lg-2">
+                    @include('frontend.layout.myaccount-sidebar')
+                </div>
                 <div class="col-lg-9">
                     <div class="page-content my-account__edit">
                         <div class="my-account__edit-form">
