@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BackendControllers\CategoryController;
 use App\Http\Controllers\BackendControllers\ProductsController;
+use App\Http\Controllers\FrontendControllers\AccountOrderController;
 use App\Http\Controllers\FrontendControllers\CartController;
 use App\Http\Controllers\FrontendControllers\OrderController;
 use App\Http\Controllers\PagesController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\FrontendControllers\ConfirmationController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/welcome', function () {
     return view('welcome');
 });
@@ -98,6 +100,14 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/addresses', [PagesController::class, 'addresses'])->name('addresses');
     Route::get('/add_address', [PagesController::class, 'add_address'])->name('add_address');
     Route::get('/account_details', [PagesController::class, 'account_details'])->name('account_details');
+
+    /* Route::get('/account/orders', [AccountOrderController::class, 'index'])->name('account.orders');
+    Route::get('/account/orders/{id}', [AccountOrderController::class, 'show'])->name('account.orders.show');*/
+    Route::get('/orders', [AccountOrderController::class, 'index'])->name('account.orders');
+    Route::get('/orders/{id}', [AccountOrderController::class, 'show'])->name('account.orders.show');
 });
+
+
+
 
 require __DIR__ . '/auth.php';

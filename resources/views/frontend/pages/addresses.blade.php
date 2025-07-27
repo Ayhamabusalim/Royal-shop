@@ -15,7 +15,7 @@
                                 <p class="notice">The following addresses will be used on the checkout page by default.</p>
                             </div>
                             <div class="col-6 text-right">
-                                <a href="#" class="btn btn-sm btn-info">Add New</a>
+                                <a href="{{route('add_address')}}" class="btn btn-sm btn-info">Add New</a>
                             </div>
                         </div>
                         <div class="my-account__address-list row">
@@ -24,7 +24,7 @@
                             <div class="my-account__address-item col-md-6">
                                 <div class="my-account__address-item__title">
                                     <h5>Sudhir Kumar <i class="fa fa-check-circle text-success"></i></h5>
-                                    <a href="#">Edit</a>
+
                                 </div>
                                 <div class="my-account__address-item__detail">
                                     <p>Flat No - 13, R. K. Wing - B</p>

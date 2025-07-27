@@ -1,4 +1,3 @@
-
 <style>
     .pt-90 {
         padding-top: 90px !important;
@@ -99,7 +98,7 @@
 
 <ul class="account-nav">
     <li><a href="{{route('myaccount')}}" class="menu-link menu-link_us-s">Dashboard</a></li>
-    <li><a href="{{route('orders')}}" class="menu-link menu-link_us-s">Orders</a></li>
+    <li><a href="{{route('account.orders')}}" class="menu-link menu-link_us-s">Orders</a></li>
 
     <li><a href="{{route('addresses')}}" class="menu-link menu-link_us-s">Addresses</a></li>
     <li><a href="add_address" class="menu-link menu-link_us-s">Add Addresses</a></li>
