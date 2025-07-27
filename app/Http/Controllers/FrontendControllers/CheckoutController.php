@@ -17,15 +17,16 @@ class CheckoutController extends Controller
             ->where('user_id', $user->id)
             ->get();
 
-        // Calculate subtotal
-        $subtotal = $cart->sum(function ($item) {
-            return $item->price * $item->quantity;
-        });
+        if ($cart->isEmpty()) {
+            return redirect()->route('cart')->with('error', 'Your cart is empty.');
+        }
 
-        // Additional charges
+        // Calculate subtotal
+        $subtotal = $cart->sum(fn($item) => $item->price * $item->quantity);
+
         $vat = 19.00; // Fixed VAT
         $shipping = 0.00; // Free shipping
-        $total = $subtotal + $vat;
+        $total = $subtotal + $vat + $shipping;
 
         return view('frontend.pages.checkout', compact('cart', 'subtotal', 'vat', 'shipping', 'total'));
     }

@@ -9,7 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendControllers\CheckoutController;
-
+use App\Http\Controllers\FrontendControllers\ConfirmationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +110,14 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     /* check out rote  */
     Route::get('/checkout', [CheckoutController::class, 'showCheckoutForm'])->name('checkout');
     Route::post('/checkout', [OrderController::class, 'placeOrder'])->name('checkout.placeOrder');
+
+    /* confirmation oreder route */
+    Route::get('/order-confirmation', [ConfirmationController::class, 'index'])->name('confirmation_order');
+
+
+
+
+
 });
 
 require __DIR__ . '/auth.php';

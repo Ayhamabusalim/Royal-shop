@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ShoppingCart;
@@ -28,19 +27,17 @@ class OrderController extends Controller
             'payment_method' => 'required|string',
         ]);
 
-        $user = auth()->user();
+        $user = Auth::user();
 
         // Get cart from DB
-        $cart = ShoppingCart::where('user_id', $user->id)->get();
+        $cart = ShoppingCart::with('product')->where('user_id', $user->id)->get();
+
         if ($cart->isEmpty()) {
             return redirect()->route('cart')->with('error', 'Your cart is empty.');
         }
 
         // Calculate subtotal
-        $subtotal = 0;
-        foreach ($cart as $item) {
-            $subtotal += $item->price * $item->quantity;
-        }
+        $subtotal = $cart->sum(fn($item) => $item->price * $item->quantity);
 
         $tax = 19.00;
         $shipping = 0.00;
@@ -59,7 +56,6 @@ class OrderController extends Controller
         $order->currency = 'USD';
         $order->payment_status = 'pending';
         $order->payment_method = $request->payment_method;
-
         $order->notes = json_encode([
             'name' => $request->name,
             'phone' => $request->phone,
@@ -70,12 +66,11 @@ class OrderController extends Controller
             'locality' => $request->locality,
             'landmark' => $request->landmark,
         ]);
-
         $order->save();
 
         // Create OrderItems from Cart
         foreach ($cart as $item) {
-            $product = $item->product; // Uses the `product()` relation in your ShoppingCart model
+            $product = $item->product;
 
             $orderItem = new OrderItem();
             $orderItem->order_id = $order->id;
@@ -90,6 +85,9 @@ class OrderController extends Controller
 
         // Clear the cart
         ShoppingCart::where('user_id', $user->id)->delete();
+
+        // Store order in session to show on confirmation page
+        session()->put('order', $order);
 
         return redirect()->route('confirmation_order')->with('success', 'Order placed successfully!');
     }
