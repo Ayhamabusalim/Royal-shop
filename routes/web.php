@@ -3,6 +3,7 @@
 use App\Http\Controllers\BackendControllers\CategoryController;
 use App\Http\Controllers\BackendControllers\ProductsController;
 use App\Http\Controllers\FrontendControllers\AccountOrderController;
+use App\Http\Controllers\FrontendControllers\AddressController;
 use App\Http\Controllers\FrontendControllers\CartController;
 use App\Http\Controllers\FrontendControllers\OrderController;
 use App\Http\Controllers\PagesController;
@@ -97,7 +98,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 
     Route::get('/orders', [PagesController::class, 'orders'])->name('orders');
-    Route::get('/addresses', [PagesController::class, 'addresses'])->name('addresses');
+    /*  Route::get('/addresses', [PagesController::class, 'addresses'])->name('addresses'); */
     Route::get('/add_address', [PagesController::class, 'add_address'])->name('add_address');
     Route::get('/account_details', [PagesController::class, 'account_details'])->name('account_details');
 
@@ -105,6 +106,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/account/orders/{id}', [AccountOrderController::class, 'show'])->name('account.orders.show');*/
     Route::get('/orders', [AccountOrderController::class, 'index'])->name('account.orders');
     Route::get('/orders/{id}', [AccountOrderController::class, 'show'])->name('account.orders.show');
+
+    Route::get('addresses', [AddressController::class, 'addressPage'])->name('addresses');
+    Route::post('add_address', [AddressController::class, 'store'])->name('add_address');
 });
 
 

@@ -1,4 +1,5 @@
 @extends('frontend.layout.master')
+
 @section('main')
     <main class="pt-90">
         <div class="mb-4 pb-4"></div>
@@ -14,29 +15,40 @@
                             <div class="col-6">
                                 <p class="notice">The following addresses will be used on the checkout page by default.</p>
                             </div>
-                            <div class="col-6 text-right">
-                                <a href="{{route('add_address')}}" class="btn btn-sm btn-info">Add New</a>
-                            </div>
+                           
                         </div>
+
                         <div class="my-account__address-list row">
                             <h5>Shipping Address</h5>
 
-                            <div class="my-account__address-item col-md-6">
-                                <div class="my-account__address-item__title">
-                                    <h5>Sudhir Kumar <i class="fa fa-check-circle text-success"></i></h5>
+                            @if($shippingAddress)
+                                <div class="my-account__address-item col-md-6">
+                                    <div class="my-account__address-item__title">
+                                        <h5>{{ $shippingAddress->first_name }} {{ $shippingAddress->last_name }} <i
+                                                class="fa fa-check-circle text-success"></i></h5>
+                                    </div>
+                                    <div class="my-account__address-item__detail">
+                                        @if($shippingAddress->company)
+                                            <p>{{ $shippingAddress->company }}</p>
+                                        @endif
+                                        <p>{{ $shippingAddress->address_line_1 }}</p>
+                                        @if($shippingAddress->address_line_2)
+                                            <p>{{ $shippingAddress->address_line_2 }}</p>
+                                        @endif
+                                        <p>{{ $shippingAddress->city }}, {{ $shippingAddress->state }}</p>
+                                        <p>{{ $shippingAddress->postal_code }}, {{ $shippingAddress->country }}</p>
+                                        <br>
+                                        <p>Mobile : {{ $shippingAddress->phone ?? '-' }}</p>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="col-md-12">
+                                    <div class="alert alert-warning text-center mt-4">
+                                        You do not have a shipping address yet.
+                                    </div>
+                                </div>
+                            @endif
 
-                                </div>
-                                <div class="my-account__address-item__detail">
-                                    <p>Flat No - 13, R. K. Wing - B</p>
-                                    <p>ABC, DEF</p>
-                                    <p>GHJ, </p>
-                                    <p>Near Sun Temple</p>
-                                    <p>000000</p>
-                                    <br>
-                                    <p>Mobile : 1234567891</p>
-                                </div>
-                            </div>
-                            <hr>
                         </div>
                     </div>
                 </div>

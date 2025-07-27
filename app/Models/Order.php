@@ -30,4 +30,8 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+    public function shippingAddress()
+    {
+        return $this->hasOne(\App\Models\ShippingAddress::class);
+    }
 }
