@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-             $table->id(); // BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+            $table->id(); // BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
 
             $table->foreignId('user_id')
                 ->constrained('users')
@@ -44,6 +44,7 @@ return new class extends Migration
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
+
 
     /**
      * Reverse the migrations.

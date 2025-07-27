@@ -3,10 +3,13 @@
 use App\Http\Controllers\BackendControllers\CategoryController;
 use App\Http\Controllers\BackendControllers\ProductsController;
 use App\Http\Controllers\FrontendControllers\CartController;
+use App\Http\Controllers\FrontendControllers\OrderController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontendControllers\CheckoutController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +32,8 @@ Route::get('/orders', [PagesController::class, 'orders'])->name('orders');
 Route::get('/orders_details', [PagesController::class, 'orders_details'])->name('orders_details');
 Route::get('/addresses', [PagesController::class, 'addresses'])->name('addresses');
 Route::get('/add_address', [PagesController::class, 'add_address'])->name('add_address');
-Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
+/* Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
+ */
 Route::get('/confirmation_order', [PagesController::class, 'confirmation_order'])->name('confirmation_order');
 /* Route::get('/admin_dash', [PagesController::class, 'admin_dash'])->name('admin_dash');
 Route::get('/admin_dash', [PagesController::class, 'admin_dash'])->name('admin_dash'); */
@@ -102,6 +106,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
     Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::patch('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update');
+
+    /* check out rote  */
+    Route::get('/checkout', [CheckoutController::class, 'showCheckoutForm'])->name('checkout');
+    Route::post('/checkout', [OrderController::class, 'placeOrder'])->name('checkout.placeOrder');
 });
 
 require __DIR__ . '/auth.php';

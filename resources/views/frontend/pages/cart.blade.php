@@ -14,7 +14,7 @@
         <em>Manage Your Items List</em>
       </span>
       </a>
-      <a href="{{ route('checkout') }}" class="checkout-steps__item">
+      <a href="{{ route('checkout.placeOrder') }}" class="checkout-steps__item">
       <span class="checkout-steps__item-number">02</span>
       <span class="checkout-steps__item-title">
         <span>Shipping and Checkout</span>
@@ -114,7 +114,7 @@
         <th>Subtotal</th>
         <td>${{ number_format($subtotal, 2) }}</td>
         </tr>
-        <tr>
+       {{--  <tr>
         <th>Shipping</th>
         <td>
         <div class="form-check">
@@ -132,7 +132,7 @@
         <div>Shipping to AL.</div>
         <a href="#" class="menu-link menu-link_us-s">CHANGE ADDRESS</a>
         </td>
-        </tr>
+        </tr> --}}
         <tr>
         <th>VAT</th>
         <td>$19</td>
@@ -147,7 +147,7 @@
 
       <div class="mobile_fixed-btn_wrapper mt-4">
       <div class="button-wrapper container">
-        <a href="{{ route('checkout') }}" class="btn btn-primary btn-checkout">PROCEED TO CHECKOUT</a>
+        <a href="{{ route('checkout.placeOrder') }}" class="btn btn-primary btn-checkout">PROCEED TO CHECKOUT</a>
       </div>
       </div>
       </div>
