@@ -66,7 +66,7 @@
                 </ul>
             </div>
 
-            <div class="footer-column footer-menu mb-4 mb-lg-0">
+            {{-- <div class="footer-column footer-menu mb-4 mb-lg-0">
                 <h6 class="sub-menu__title text-uppercase">Shop</h6>
                 <ul class="sub-menu__list list-unstyled">
                     <li class="sub-menu__item"><a href="shop2.html" class="menu-link menu-link_us-s">New
@@ -105,18 +105,18 @@
                     <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Bags</a></li>
                     <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Shop All</a></li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
     </div>
 
     <div class="footer-bottom">
         <div class="container d-md-flex align-items-center">
             <span class="footer-copyright me-auto">©2024 Surfside Media</span>
-            <div class="footer-settings d-md-flex align-items-center">
+            {{-- <div class="footer-settings d-md-flex align-items-center">
                 <a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms-conditions.html">Terms
                     &amp;
                     Conditions</a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </footer>

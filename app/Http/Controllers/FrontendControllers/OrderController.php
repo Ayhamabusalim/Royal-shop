@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ShoppingCart;
+use App\Models\ShippingAddress;
 
 class OrderController extends Controller
 {
@@ -29,22 +30,18 @@ class OrderController extends Controller
 
         $user = Auth::user();
 
-        // Get cart from DB
         $cart = ShoppingCart::with('product')->where('user_id', $user->id)->get();
 
         if ($cart->isEmpty()) {
             return redirect()->route('cart')->with('error', 'Your cart is empty.');
         }
 
-        // Calculate subtotal
         $subtotal = $cart->sum(fn($item) => $item->price * $item->quantity);
-
         $tax = 19.00;
         $shipping = 0.00;
         $discount = 0.00;
         $total = $subtotal + $tax + $shipping - $discount;
 
-        // Create Order
         $order = new Order();
         $order->user_id = $user->id;
         $order->order_number = strtoupper(Str::random(10));
@@ -68,7 +65,25 @@ class OrderController extends Controller
         ]);
         $order->save();
 
-        // Create OrderItems from Cart
+        // Save shipping address
+        $fullName = explode(' ', $request->name, 2);
+        $firstName = $fullName[0];
+        $lastName = $fullName[1] ?? '';
+
+        ShippingAddress::create([
+            'order_id' => $order->id,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'company' => null,
+            'address_line_1' => $request->address,
+            'address_line_2' => $request->locality . ' - ' . $request->landmark,
+            'city' => $request->city,
+            'state' => $request->state,
+            'postal_code' => $request->zip,
+            'country' => 'N/A',
+            'phone' => $request->phone,
+        ]);
+
         foreach ($cart as $item) {
             $product = $item->product;
 
@@ -83,10 +98,8 @@ class OrderController extends Controller
             $orderItem->save();
         }
 
-        // Clear the cart
         ShoppingCart::where('user_id', $user->id)->delete();
 
-        // Store order in session to show on confirmation page
         session()->put('order', $order);
 
         return redirect()->route('confirmation_order')->with('success', 'Order placed successfully!');

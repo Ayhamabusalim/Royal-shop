@@ -416,9 +416,9 @@
                     <li class="navigation__item">
                         <a href="{{route('index')}}" class="navigation__link">Home</a>
                     </li>
-                    <li class="navigation__item">
+                   {{--  <li class="navigation__item">
                         <a href="{{route('shop')}}" class="navigation__link">Shop</a>
-                    </li>
+                    </li> --}}
                     <li class="navigation__item">
                         <a href="{{route('cart')}}" class="navigation__link">Cart</a>
                     </li>
