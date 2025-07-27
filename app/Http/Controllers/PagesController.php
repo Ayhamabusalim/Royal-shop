@@ -81,10 +81,10 @@ class PagesController extends Controller
     {
         return view('frontend.pages.account_details');
     }
-    public function admin_login()
+    /* public function admin_login()
     {
         return view('backend.admin_auth.admin_login');
-    }
+    } */
     public function dashboard()
     {
         return view('backend.pages.dashboard');

@@ -506,19 +506,27 @@
                     </div>
                 </div>
                 @auth
-                    <a href="{{route('watchlist')}}" class="header-tools__item">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href="#icon_heart" />
-                        </svg>
-                    </a>
 
-                    <a href="{{route('cart')}}" class="header-tools__item header-tools__cart">
+                    @php
+                        $cart = session('cart', []);
+                        $cartCount = array_sum(array_column($cart, 'quantity'));
+                    @endphp
+
+                    <a href="{{ route('cart') }}" class="header-tools__item header-tools__cart position-relative">
                         <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <use href="#icon_cart" />
                         </svg>
 
+                        {{-- Cart Count Badge --}}
+                        <span
+                            class="cart-count-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $cartCount }}
+                        </span>
                     </a>
+
+
+
                 @endauth
 
 

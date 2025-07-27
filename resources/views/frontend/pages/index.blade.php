@@ -37,11 +37,11 @@
 
         {{-- Slideshow --}}
         <section class="swiper-container js-swiper-slider swiper-number-pagination slideshow" data-settings='{
-                "autoplay": { "delay": 5000 },
-                "slidesPerView": 1,
-                "effect": "fade",
-                "loop": true
-            }'>
+                                "autoplay": { "delay": 5000 },
+                                "slidesPerView": 1,
+                                "effect": "fade",
+                                "loop": true
+                            }'>
             <div class="swiper-wrapper">
                 {{-- Slide 1 --}}
                 <div class="swiper-slide">
@@ -107,20 +107,20 @@
             <h2 class="section-title text-center mb-4">Categories</h2>
             <div class="position-relative">
                 <div class="swiper-container js-swiper-slider" data-settings='{
-                        "autoplay": { "delay": 4000 },
-                        "slidesPerView": 6,
-                        "loop": true,
-                        "spaceBetween": 30,
-                        "navigation": {
-                            "nextEl": ".categories-next",
-                            "prevEl": ".categories-prev"
-                        },
-                        "breakpoints": {
-                            "320": { "slidesPerView": 2, "spaceBetween": 10 },
-                            "768": { "slidesPerView": 4, "spaceBetween": 20 },
-                            "1200": { "slidesPerView": 6, "spaceBetween": 30 }
-                        }
-                    }'>
+                                        "autoplay": { "delay": 4000 },
+                                        "slidesPerView": 6,
+                                        "loop": true,
+                                        "spaceBetween": 30,
+                                        "navigation": {
+                                            "nextEl": ".categories-next",
+                                            "prevEl": ".categories-prev"
+                                        },
+                                        "breakpoints": {
+                                            "320": { "slidesPerView": 2, "spaceBetween": 10 },
+                                            "768": { "slidesPerView": 4, "spaceBetween": 20 },
+                                            "1200": { "slidesPerView": 6, "spaceBetween": 30 }
+                                        }
+                                    }'>
                     <div class="swiper-wrapper">
                         @foreach ($categories as $category)
                             <div class="swiper-slide text-center">
@@ -143,20 +143,20 @@
             <h2 class="section-title text-center mb-4">Sub Categories</h2>
             <div class="position-relative">
                 <div class="swiper-container js-swiper-slider" data-settings='{
-                        "autoplay": { "delay": 4000 },
-                        "slidesPerView": 6,
-                        "loop": true,
-                        "spaceBetween": 30,
-                        "navigation": {
-                            "nextEl": ".subcategories-next",
-                            "prevEl": ".subcategories-prev"
-                        },
-                        "breakpoints": {
-                            "320": { "slidesPerView": 2, "spaceBetween": 10 },
-                            "768": { "slidesPerView": 4, "spaceBetween": 20 },
-                            "1200": { "slidesPerView": 6, "spaceBetween": 30 }
-                        }
-                    }'>
+                                        "autoplay": { "delay": 4000 },
+                                        "slidesPerView": 6,
+                                        "loop": true,
+                                        "spaceBetween": 30,
+                                        "navigation": {
+                                            "nextEl": ".subcategories-next",
+                                            "prevEl": ".subcategories-prev"
+                                        },
+                                        "breakpoints": {
+                                            "320": { "slidesPerView": 2, "spaceBetween": 10 },
+                                            "768": { "slidesPerView": 4, "spaceBetween": 20 },
+                                            "1200": { "slidesPerView": 6, "spaceBetween": 30 }
+                                        }
+                                    }'>
                     <div class="swiper-wrapper">
                         @foreach ($subcategories as $subcategory)
                             <div class="swiper-slide text-center">
@@ -193,8 +193,9 @@
                                     <span class="money price text-secondary">{{ $product->price }}</span>
                                 </div>
                                 <div class="anim_appear-bottom d-none d-sm-flex align-items-center">
-                                    <button class="btn btn-sm btn-dark me-2 js-add-cart" data-aside="cartDrawer">Add To
-                                        Cart</button>
+                                    <button class="btn btn-sm btn-dark me-2 js-add-cart" data-product-id="{{ $product->id }}">
+                                        Add To Cart
+                                    </button>
                                     <button class="btn btn-sm btn-outline-secondary me-2 js-quick-view" data-bs-toggle="modal"
                                         data-bs-target="#quickView">Quick View</button>
                                     <button class="btn btn-sm btn-light js-add-wishlist" title="Add To Wishlist">

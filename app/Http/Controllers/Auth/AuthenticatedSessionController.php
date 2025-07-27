@@ -28,11 +28,33 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if (Auth::user()->roles->contains('name', 'admin')) {
+
+        // ✅ Rebuild cart session from database
+        $user = Auth::user();
+        $cartItems = \App\Models\ShoppingCart::where('user_id', $user->id)->get();
+
+        $sessionCart = [];
+
+        foreach ($cartItems as $item) {
+            $sessionCart[$item->product_id] = [
+                'product_id' => $item->product_id,
+                'name'       => $item->product->name,
+                'price'      => $item->price,
+                'image'      => $item->product->image,
+                'quantity'   => $item->quantity,
+            ];
+        }
+
+        session()->put('cart', $sessionCart);
+
+        // Redirect based on role
+        if ($user->roles->contains('name', 'admin')) {
             return redirect()->intended(RouteServiceProvider::DASH);
         }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
+
 
     /**
      * Destroy an authenticated session.

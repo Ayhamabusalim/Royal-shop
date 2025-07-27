@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BackendControllers\CategoryController;
 use App\Http\Controllers\BackendControllers\ProductsController;
+use App\Http\Controllers\FrontendControllers\CartController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubCategoryController;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PagesController::class, 'index'])->name('index');
 Route::get('/shop', [PagesController::class, 'shop'])->name('shop');
-Route::get('/cart', [PagesController::class, 'cart'])->name('cart');
+
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
 Route::get('/watchlist', [PagesController::class, 'watchlist'])->name('watchlist');
@@ -48,6 +49,9 @@ Route::get('/myaccount', [PagesController::class, 'myaccount'])->middleware(['au
 Route::get('/welcome', function () {
     return view('welcome');
 });
+
+
+/*  all routs for admin  */
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     /* dashboard route */
@@ -90,6 +94,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
-Route::middleware(['auth', 'role:user'])->group(function () {});
+Route::middleware(['auth', 'role:user'])->group(function () {
+
+    /*     Route::get('/cart', [PagesController::class, 'cart'])->name('cart');
+ */
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::patch('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update');
+});
 
 require __DIR__ . '/auth.php';
